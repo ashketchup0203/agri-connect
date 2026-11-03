@@ -5,7 +5,7 @@
     --hunter-green: #3C5233; /* Secondary accents */
     --olive: #6F732F;        /* Tags, highlights */
     --camel: #B38A58;        /* Borders, subtle accents */
-    --bg-cream: #F9F6F0;     /* Page background (to match your Figma) */
+    --bg-cream: #FFEBD1;     /* Page background (to match your Figma) */
     --card-bg: #FFFFFF;
 }
 
@@ -23,7 +23,7 @@ body {
 
 /* --- HEADER --- */
 header {
-    background-color: var(--ink-black);
+    background-color: var(--hunter-green);
     color: white;
     padding: 1rem 5%;
     display: flex;
@@ -34,6 +34,11 @@ header {
 header .logo h2 {
     color: var(--camel);
     letter-spacing: 1px;
+}
+
+.logo img{
+    width: 100%;
+    max-width: 180px;
 }
 
 header nav a {
@@ -50,50 +55,139 @@ header nav a:hover {
 
 /* --- HERO SECTION --- */
 .hero {
-    text-align: center;
-    padding: 4rem 20px;
-    background-color: #FAF0DE; /* Slightly darker cream for contrast */
-    border-bottom: 1px solid var(--camel);
+    margin: 50px auto 0 auto;
+    max-width: 1400px; /* Keeps it aligned with the grid below */
+    display: flex;      /* This makes text and image sit side-by-side */
+    align-items: center;
+    justify-content: space-between;
+    padding: 3rem 4rem;
+    background-color: #FBD7A9; 
+    border-radius: 30px;
+    gap: 40px;
+}
+
+.hero-content {
+    flex: 1;
+    max-width: 600px;
 }
 
 .hero h1 {
     color: var(--dark-spruce);
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-    letter-spacing: 1px;
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+    line-height: 1.1;
 }
 
 .hero p {
     color: var(--ink-black);
-    font-size: 1.1rem;
-    margin-bottom: 25px;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.trust-badges {
+    font-size: 0.95rem !important;
+    color: var(--dark-spruce) !important;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.hero-image img {
+    width: 100%;
+    max-width: 550px;
+    height: 350px;
+    object-fit: cover; /* Prevents the image from stretching weirdly */
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* --- SEARCH BAR SECTION --- */
+.search-section {
+    max-width: 1400px;
+    margin: 30px auto;
+    padding: 0 5%;
 }
 
 .search-container {
     display: flex;
-    justify-content: center;
-    max-width: 600px;
-    margin: 0 auto 15px auto;
+    background-color: #FDE1BD;
+    border-radius: 30px;
+    padding: 5px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.search-container input {
+    flex: 1;
+    padding: 15px 25px;
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 1.1rem;
 }
 
 .search-container input {
     width: 80%;
     padding: 12px 20px;
-    border: 2px solid var(--dark-spruce);
+    border: 2px solid var(--olive);
     border-radius: 30px 0 0 30px;
     outline: none;
     font-size: 1rem;
+    background-color: #FDE1BD;
 }
 
 .search-container button {
     padding: 12px 30px;
     background-color: var(--dark-spruce);
-    color: white;
+    color: #FDE1BD;
     border: 2px solid var(--dark-spruce);
     border-radius: 0 30px 30px 0;
     cursor: pointer;
     font-weight: bold;
     transition: background 0.3s;
+}
+
+.search-container button {
+ padding: 1.1em 2em;
+ background: none;
+ border: 2px solid var(--dark-spruce);
+ font-size: 15px;
+ color: #fff;
+ cursor: pointer;
+ position: relative;
+ overflow: hidden;
+ transition: all 0.3s;
+ background-color: #6F732F;
+ font-weight: bolder;
+}
+
+.search-container button:before {
+ content: "";
+ position: absolute;
+ width: 100px;
+ height: 120%;
+ background-color: #B38A58;
+ top: 50%;
+ transform: skewX(30deg) translate(-150%, -50%);
+ transition: all 0.5s;
+}
+
+.search-container button:hover {
+ background-color: #4cc9f0;
+ color: #fff;
+}
+
+.search-container button:hover::before {
+ transform: skewX(30deg) translate(150%, -50%);
+ transition-delay: 0.1s;
+}
+
+.search-container button:active {
+ transform: scale(0.9);
 }
 
 .search-container button:hover {
@@ -104,6 +198,20 @@ header nav a:hover {
     font-size: 0.9rem !important;
     color: var(--olive) !important;
     font-weight: bold;
+}
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    object-fit: cover;
+}
+
+.hero-image img {
+    width: 100%;
+    max-width: 600px;
+    height: 400px;
+    border-radius: 20px;
 }
 
 /* --- MAIN LAYOUT (Sidebar + Grid) --- */
@@ -184,6 +292,11 @@ main {
     border-radius: 4px;
     font-size: 0.85rem;
     line-height: 1.4;
+}
+
+.notice img{
+    max-width: 40px;
+    height: 30px;
 }
 
 /* --- PRODUCT GRID --- */
