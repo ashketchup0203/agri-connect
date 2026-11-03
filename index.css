@@ -6,7 +6,7 @@
     --olive: #6F732F;        /* Tags, highlights */
     --camel: #B38A58;        /* Borders, subtle accents */
     --bg-cream: #FFEBD1;     /* Page background (to match your Figma) */
-    --card-bg: #FFFFFF;
+    --card-bg: #FBD7A9;
 }
 
 * {
@@ -379,12 +379,136 @@ main {
     color: red;
 }
 
-/* --- FOOTER --- */
+/* --- FOOTER & PAGINATION --- */
 footer {
-    text-align: center;
-    padding: 20px;
-    color: #666;
+    background-color: var(--olive); /* The solid green background */
+    color: var(--bg-cream);
+    margin-top: 60px;
+    padding: 30px 5% 20px 5%;
     font-size: 0.9rem;
-    border-top: 1px solid #ddd;
-    margin-top: 40px;
+}
+
+.footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Top Row: Pagination */
+
+
+.pagination-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Faint line to separate rows */
+}
+
+.pagination-bar p {
+    color: var(--bg-cream);
+}
+
+.page-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.page-btn {
+    background-color: white;
+    color: var(--ink-black);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.page-btn:hover {
+    background-color: var(--bg-cream);
+    transform: translateY(-2px);
+}
+
+.page-btn.active {
+    background-color: var(--ink-black); /* The dark green active button */
+    color: white;
+}
+
+.next-btn {
+    padding: 8px 20px;
+}
+
+
+.next-btn {
+ padding: 1.1em 2em;
+ background: none;
+ border: 2px solid #fff;
+ font-size: 15px;
+ color: #131313;
+ cursor: pointer;
+ position: relative;
+ overflow: hidden;
+ transition: all 0.3s;
+ border-radius: 12px;
+ background-color: #ecd448;
+ font-weight: bolder;
+}
+
+.next-btn:before {
+ content: "";
+ position: absolute;
+ width: 100px;
+ height: 120%;
+ background-color: #6F732F;
+ top: 50%;
+ transform: skewX(30deg) translate(-150%, -50%);
+ transition: all 0.5s;
+}
+
+.next-btn:hover {
+ background-color: #264027;
+ color: #fff;
+ box-shadow: 0 2px 0 2px #0d3b66;
+}
+
+.next-btn:hover::before {
+ transform: skewX(30deg) translate(150%, -50%);
+ transition-delay: 0.1s;
+}
+
+.next-btn:active {
+ transform: scale(0.9);
+}
+
+/* Bottom Row: Copyright & Links */
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.footer-links a {
+    color: var(--bg-cream);
+    text-decoration: none;
+    margin-left: 20px;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: white;
+}
+
+/* Make it responsive for smaller screens =======================================================================*/
+@media (max-width: 768px) {
+    .pagination-bar, .footer-bottom {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .footer-links a {
+        margin: 0 10px;
+    }
 }
