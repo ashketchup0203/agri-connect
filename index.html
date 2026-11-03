@@ -3,9 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+    <title>Marketplace</title>
 </head>
 <body>
+
+     <!-- HEADER SECTION -->
+    <header>
+        <div class="logo">
+            <h2>Agri-Connect</h2>
+        </div>
+        <nav>
+            <a href="#">Marketplace</a>
+            <a href="#">My Listings</a>
+            <a href="#">Cart (0)</a>
+            <a href="#">Profile</a>
+        </nav>
+    </header>
+
+        <!-- HERO SECTION -->
+    <section class="hero">
+        <h1>FROM DI FAM, TO YUH POT!</h1>
+        <p>Browse produce from Jamaica's most trusted farmers!</p>
+        
+        <!-- Search Bar -->
+        <div class="search-container">
+            <input type="text" placeholder="Search yam, goats, farmers and more...">
+            <button>Search</button>
+        </div>
+        <p class="trust-badges">✔ Verified local farmers | 🔒 Secure checkout · JMD</p>
+    </section>
+
+
+     <!-- MAIN CONTENT AREA -->
+    <main>
+            <!-- SIDEBAR FILTERS -->
+        <aside class="filters">
+            <div class="filter-header">
+                <h3>Filters</h3>
+                <a href="#">Reset</a>
+            </div>
+
+            <div class="filter-group">
+                <h4>Category</h4>
+                <label><input type="radio" name="category" checked> All produce (128)</label>
+                <label><input type="radio" name="category"> Crops (96)</label>
+                <label><input type="radio" name="category"> Livestock (32)</label>
+            </div>
+
+            <div class="filter-group">
+                <h4>Parish</h4>
+                <select>
+                    <option>All parishes</option>
+
+                    <option>Manchester</option>
+                    <option>St. Elizabeth</option>
+                    <option>Clarendon</option>
+                    <option>St. Mary</option>
+                    <option>St. Ann</option>
+                    <option>Kingston</option>
+                    <option>St. James</option>
+                    <option>Hanover</option>
+                    <option>St. Catherine</option>
+                    <option>Portland</option>
+                    <option>St. Andrew</option>
+                    <option>St. Thomas</option>
+                    <option>Trelawny</option>
+                    <option>Westmoreland</option>
+
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <h4>Price range (JMD)</h4>
+                <input type="range" min="100" max="100000">
+                <p>J$100 — J$100,000</p>
+            </div>
+
+            <div class="filter-group">
+                <h4>Farmer status</h4>
+                <label><input type="checkbox" checked> Verified farmers only</label>
+                <label><input type="checkbox"> All farmers</label>
+            </div>
+
+            <div class="notice">
+                <p>Buying livestock? Arrange safe transport with your farmer.</p>
+            </div>
+        </aside>
+
+
+         <!-- PRODUCT GRID -->
+
+          <section class="product-grid">
+            
+            <!-- Product Card 1 -->
+            <article class="product-card">
+                <button class="favorite-btn">♥</button>
+                <img src="https://images.unsplash.com/photo-1596124460582-6c5b4d6d2835?q=80&w=600&auto=format&fit=crop" alt="Yellow Yam">
+                <p class="tag">Freshly harvested</p>
+                <h3>Yellow yam</h3>
+                <p class="farmer">Green Valley Farm</p>
+                <p class="price">J$250/lb</p>
+            </article>
+
+            <!-- Product Card 2 -->
+            <article class="product-card">
+                <button class="favorite-btn">♥</button>
+                <img src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea?q=80&w=600&auto=format&fit=crop" alt="Tomatoes">
+                <p class="tag">In season</p>
+                <h3>Vine-ripened tomatoes</h3>
+                <p class="farmer">Green Valley Farm</p>
+                <p class="price">J$350/lb</p>
+            </article>
+
+            <!-- Product Card 3 -->
+            <article class="product-card">
+                <button class="favorite-btn">♥</button>
+                <img src="https://images.unsplash.com/photo-1524024973431-2ad916746881?q=80&w=600&auto=format&fit=crop" alt="Boer Goat">
+                <p class="tag">Health checked</p>
+                <h3>Boer goat · young buck</h3>
+                <p class="farmer">Cedar Hill Livestock</p>
+                <p class="price">J$45,000/head</p>
+            </article>
+
+            <!-- Product Card 4 -->
+            <article class="product-card">
+                <button class="favorite-btn">♥</button>
+                <img src="https://images.unsplash.com/photo-1596124460582-6c5b4d6d2835?q=80&w=600&auto=format&fit=crop" alt="Green Plantain">
+                <p class="tag">Farm fresh</p>
+                <h3>Green plantain</h3>
+                <p class="farmer">Riverbend Organics</p>
+                <p class="price">J$180/lb</p>
+            </article>
+
+             <!-- Product Card 5 -->
+             <article class="product-card">
+                <button class="favorite-btn">♥</button>
+                <img src="https://images.unsplash.com/photo-1598965675045-45c5e72c7d05?q=80&w=600&auto=format&fit=crop" alt="Laying Hens">
+                <p class="tag">18 weeks old</p>
+                <h3>Free-range laying hens</h3>
+                <p class="farmer">Sunrise Poultry</p>
+                <p class="price">J$2,800/bird</p>
+            </article>
+
+            <!-- Product Card 6 -->
+            <article class="product-card">
+                <button class="favorite-btn">♥</button>
+                <img src="https://images.unsplash.com/photo-1588165171080-c89acfa5ee83?q=80&w=600&auto=format&fit=crop" alt="Scotch Bonnet Peppers">
+                <p class="tag">Small batch</p>
+                <h3>Scotch bonnet peppers</h3>
+                <p class="farmer">Hilltop Harvest</p>
+                <p class="price">J$650/lb</p>
+            </article>
+
+        </section>
+
+    </main>   
     
+    
+    <!-- FOOTER PAGINATION -->
+    <footer>
+        <p>Showing 1- 6 of 128 listings</p>
+    </footer>
+
 </body>
 </html>

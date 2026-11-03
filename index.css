@@ -1,0 +1,277 @@
+/* --- GLOBAL STYLES & COLOR PALETTE --- */
+:root {
+    --ink-black: #0D1F22;    /* Main text, dark backgrounds */
+    --dark-spruce: #264027;  /* Primary buttons, headers */
+    --hunter-green: #3C5233; /* Secondary accents */
+    --olive: #6F732F;        /* Tags, highlights */
+    --camel: #B38A58;        /* Borders, subtle accents */
+    --bg-cream: #F9F6F0;     /* Page background (to match your Figma) */
+    --card-bg: #FFFFFF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-cream);
+    color: var(--ink-black);
+}
+
+/* --- HEADER --- */
+header {
+    background-color: var(--ink-black);
+    color: white;
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo h2 {
+    color: var(--camel);
+    letter-spacing: 1px;
+}
+
+header nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+header nav a:hover {
+    color: var(--camel);
+}
+
+/* --- HERO SECTION --- */
+.hero {
+    text-align: center;
+    padding: 4rem 20px;
+    background-color: #FAF0DE; /* Slightly darker cream for contrast */
+    border-bottom: 1px solid var(--camel);
+}
+
+.hero h1 {
+    color: var(--dark-spruce);
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.hero p {
+    color: var(--ink-black);
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    max-width: 600px;
+    margin: 0 auto 15px auto;
+}
+
+.search-container input {
+    width: 80%;
+    padding: 12px 20px;
+    border: 2px solid var(--dark-spruce);
+    border-radius: 30px 0 0 30px;
+    outline: none;
+    font-size: 1rem;
+}
+
+.search-container button {
+    padding: 12px 30px;
+    background-color: var(--dark-spruce);
+    color: white;
+    border: 2px solid var(--dark-spruce);
+    border-radius: 0 30px 30px 0;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.search-container button:hover {
+    background-color: var(--hunter-green);
+}
+
+.trust-badges {
+    font-size: 0.9rem !important;
+    color: var(--olive) !important;
+    font-weight: bold;
+}
+
+/* --- MAIN LAYOUT (Sidebar + Grid) --- */
+main {
+    display: flex;
+    padding: 30px 5%;
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* --- SIDEBAR FILTERS --- */
+.filters {
+    width: 250px;
+    flex-shrink: 0;
+}
+
+.filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--camel);
+    padding-bottom: 10px;
+}
+
+.filter-header h3 {
+    color: var(--ink-black);
+}
+
+.filter-header a {
+    color: var(--camel);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.filter-group {
+    margin-bottom: 25px;
+}
+
+.filter-group h4 {
+    margin-bottom: 10px;
+    color: var(--dark-spruce);
+}
+
+.filter-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+.filter-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--camel);
+    border-radius: 5px;
+    background-color: white;
+    outline: none;
+}
+
+.filter-group input[type="range"] {
+    width: 100%;
+    accent-color: var(--dark-spruce);
+}
+
+.filter-group p {
+    font-size: 0.9rem;
+    color: var(--hunter-green);
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+.notice {
+    background-color: #EBE3D5;
+    padding: 15px;
+    border-left: 4px solid var(--olive);
+    border-radius: 4px;
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+/* --- PRODUCT GRID --- */
+.product-grid {
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+/* --- PRODUCT CARDS --- */
+.product-card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.product-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.product-card .tag {
+    color: var(--olive);
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 15px 15px 5px 15px;
+}
+
+.product-card h3 {
+    margin: 0 15px 5px 15px;
+    color: var(--ink-black);
+    font-size: 1.2rem;
+}
+
+.product-card .farmer {
+    margin: 0 15px 10px 15px;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.product-card .price {
+    margin: 0 15px 15px 15px;
+    color: var(--dark-spruce);
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* Favorite Button */
+.favorite-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    font-size: 1.2rem;
+    color: var(--ink-black);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.3s, color 0.3s;
+}
+
+.favorite-btn:hover {
+    background-color: white;
+    color: red;
+}
+
+/* --- FOOTER --- */
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    font-size: 0.9rem;
+    border-top: 1px solid #ddd;
+    margin-top: 40px;
+}
