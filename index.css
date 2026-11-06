@@ -227,6 +227,9 @@ main {
 .filters {
     width: 250px;
     flex-shrink: 0;
+    background-color: #FBD7A9;
+    padding: 10px;
+    border-radius: 10px;
 }
 
 .filter-header {
@@ -250,6 +253,7 @@ main {
 
 .filter-group {
     margin-bottom: 25px;
+    
 }
 
 .filter-group h4 {
@@ -303,7 +307,7 @@ main {
 .product-grid {
     flex-grow: 1;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 25px;
 }
 
@@ -355,6 +359,19 @@ main {
     font-size: 1.1rem;
 }
 
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: auto; /* Pushes the price row to the bottom */
+}
+
+.product-card .parish {
+    margin: -5px 15px 10px 15px; 
+    color: var(--olive);         
+    font-size: 0.85rem;
+    font-weight: 600;
+}
 /* Favorite Button */
 .favorite-btn {
     position: absolute;
