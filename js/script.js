@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Update text
         itemTotalText.textContent = `Item total: J$${formattedTotal}`;
-        addToCartBtn.innerHTML = `🛒 Add to cart · J$${formattedTotal}`;
+        document.getElementById('cart-btn-text').textContent = `Add to cart · J$${formattedTotal}`;
     }
 
     // Run on page load

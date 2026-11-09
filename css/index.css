@@ -750,18 +750,62 @@ footer {
 }
 .add-to-cart-btn {
     flex-grow: 1;
-    background-color: var(--dark-spruce);
-    color: white;
-    border: none;
+    /* Button Base Setup */
     padding: 15px;
     border-radius: 10px;
     font-size: 1.1rem;
     font-weight: bold;
     cursor: pointer;
-    transition: background 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    
+    /* Animation Setup */
+    background-color: var(--dark-spruce); /* Normal background */
+    color: white;
+    border: 2px solid var(--dark-spruce); /* Border matches background */
+    position: relative;
+    overflow: hidden; /* Keeps the sliding shape inside the button */
+    transition: all 0.3s;
+    z-index: 1; /* Keeps text above the animation */
 }
+
+/* This is the shape that slides across */
+.add-to-cart-btn::before {
+    content: "";
+    position: absolute;
+    width: 150px;
+    height: 200%;
+    background-color: var(--camel); /* The sliding color */
+    top: 50%;
+    transform: skewX(30deg) translate(-150%, -50%);
+    transition: all 0.5s;
+    z-index: -1; /* Puts the slide BEHIND the text */
+}
+
+/* Hover States */
 .add-to-cart-btn:hover {
-    background-color: var(--olive);
+    background-color: var(--olive); /* New background on hover */
+    border-color: var(--olive);
+    color: white;
+}
+
+/* Triggers the slide on hover */
+.add-to-cart-btn:hover::before {
+    transform: skewX(40deg) translate(200%, -50%);
+    transition-delay: 0.1s;
+}
+
+/* The "click" press effect */
+.add-to-cart-btn:active {
+    transform: scale(0.95);
+}
+
+/* Keep the SVG icon sized correctly */
+.add-to-cart-btn svg {
+    width: 22px;
+    height: 22px;
 }
 .save-btn {
     background-color: white;
