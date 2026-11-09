@@ -42,21 +42,21 @@
     <!-- BREADCRUMBS -->
     <div class="breadcrumbs">
         <a href="index.html">Marketplace</a> &rsaquo; 
-        <span>Yellow yam</span>
+        <span id="product-breadcrumb">Yellow yam</span>
     </div>
 
     <!-- PRODUCT DETAILS MAIN SECTION -->
     <main class="product-page">
         
-        <!-- LEFT COLUMN: IMAGES -->
+                <!-- LEFT COLUMN: IMAGES -->
         <div class="product-images">
-            <img src="img/Yams.webp" alt="Yellow Yam Main" class="main-img">
+            <img id="main-product-img" src="img/Yams.webp" alt="Yellow Yam Main" class="main-img">
             <div class="thumbnail-row">
-                <img src="img/Yams.webp" alt="Thumbnail 1">
-                <img src="img/Yams.webp" alt="Thumbnail 2">
+                <img id="thumb-1" src="img/Yams.webp" alt="Thumbnail 1">
+                <img id="thumb-2" src="img/Yams.webp" alt="Thumbnail 2">
                 <div class="harvest-note">
-                    <p><strong>Harvested 5 October 2026</strong></p>
-                    <p>Fresh from the hills of Manchester.</p>
+                    <p><strong id="harvest-date-text">Harvested 5 October 2026</strong></p>
+                    <p id="harvest-location-text">Fresh from the hills of Manchester.</p>
                 </div>
             </div>
         </div>
@@ -64,29 +64,28 @@
         <!-- RIGHT COLUMN: INFO & CART -->
         <div class="product-info">
             <div class="tags">
-                <span class="pill">Crops - Root vegetables</span>
+                <span class="pill" id="product-category">Crops - Root vegetables</span>
                 <span class="pill outline">In stock</span>
             </div>
             
-            <h1>Yellow yam</h1>
-            <p class="reviews">★ 4.9 (28 reviews) · Manchester, Jamaica</p>
-            <h2 class="detail-price">J$250 / lb</h2>
+            <h1 id="product-title">Yellow yam</h1>
+            <p class="reviews">★ 4.9 (28 reviews) · <span id="product-parish">Manchester</span>, Jamaica</p>
+            <h2 class="detail-price">J$<span id="product-price">250</span> / <span id="product-unit">lb</span></h2>
             
-            <p class="description">
+            <p class="description" id="product-desc">
                 Firm, golden yellow yam grown in rich Manchester soil. Freshly dug, hand-sorted and ready for your kitchen or business. Sold by the pound, directly from our farm.
             </p>
 
             <div class="stock-alert">
                 <img src="img/icons/available.png" alt="">
-
-                <strong>120 lb available</strong> · Minimum order 5 lb
+                <strong><span id="product-stock">120</span> <span id="stock-unit">lb</span> available</strong> · Minimum order 5 <span id="stock-unit-2">lb</span>
             </div>
 
             <!-- ADD TO CART FORM -->
             <div class="cart-section">
                 <div class="quantity-row">
                     <div>
-                        <p><strong>Quantity (lb)</strong></p>
+                         <p><strong>Quantity (<span id="qty-unit">lb</span>)</strong></p>
                         <p class="item-total">Item total: J$2,500</p>
                     </div>
 
@@ -106,12 +105,9 @@
                     ⚠️ Minimum order quantity is 5 lb.
                 </p>
 
-
                 <div class="action-buttons">
                     <button class="add-to-cart-btn">
-                        <!-- SVG Icon goes here -->
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-                        <!-- The text is wrapped in a span so the JS can target just the text -->
                         <span id="cart-btn-text">Add to cart · J$2,500</span>
                     </button>
                     
@@ -129,10 +125,10 @@
             <!-- FARMER PROFILE CARD -->
             <div class="farmer-card">
                 <div class="farmer-info">
-                    <div class="avatar">MW</div>
+                    <div class="avatar" id="farmer-initials">MW</div>
                     <div>
-                        <p><strong>Green Valley Farm ⌄</strong></p>
-                        <p class="subtext">Marcia Williams · Farmer since 2022</p>
+                        <p><strong id="farmer-farm-name">Green Valley Farm ⌄</strong></p>
+                        <p class="subtext" id="farmer-name">Marcia Williams · Farmer since 2022</p>
                     </div>
                 </div>
                 <button class="message-btn">Message</button>
@@ -152,20 +148,20 @@
             <!-- Left Box -->
             <div class="info-box">
                 <h3>From the farm</h3>
-                <p>Our yam is grown in Mandeville without synthetic herbicides. Each order is weighed and packed on the morning of dispatch to keep it fresh.</p>
+                <p id="from-the-farm-desc">Our yam is grown in Mandeville without synthetic herbicides. Each order is weighed and packed on the morning of dispatch to keep it fresh.</p>
                 
                 <table class="details-table">
                     <tr>
-                        <th>VARIETY</th>
-                        <th>GROWING METHOD</th>
-                        <th>HARVEST DATE</th>
-                        <th>STORAGE</th>
+                        <th id="th-detail-1">VARIETY</th>
+                        <th id="th-detail-2">GROWING METHOD</th>
+                        <th id="th-detail-3">HARVEST DATE</th>
+                        <th id="th-detail-4">STORAGE</th>
                     </tr>
                     <tr>
-                        <td>Yellow yam</td>
-                        <td>Conventional</td>
-                        <td>5 Oct 2026</td>
-                        <td>Cool, dry place</td>
+                        <td id="td-detail-1">Yellow yam</td>
+                        <td id="td-detail-2">Conventional</td>
+                        <td id="td-detail-3">5 Oct 2026</td>
+                        <td id="td-detail-4">Cool, dry place</td>
                     </tr>
                 </table>
             </div>
@@ -197,7 +193,8 @@
         </div>
     </footer>
 
-    <!-- Link to the external JavaScript file -->
+    <!-- Link to the external JavaScript filez -->
+    <script src="js/product-data.js"></script>
     <script src="js/script.js"></script>
     
 </body>
