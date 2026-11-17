@@ -1,0 +1,19 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "ssh": "Disabled",
+            "previewLimit": 50,
+            "server": "brrzw9x1a39ab938gjyo-mysql.services.clever-cloud.com",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "Agri-connect database",
+            "username": "u2zmgowidaj9e5cv",
+            "database": "brrzw9x1a39ab938gjyo",
+            "password": "mMsDqKIkdyDpwLoN33Zt"
+        }
+    ]
+}
