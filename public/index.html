@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agri Connect</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2rem; }
+    .product { border: 1px solid #ccc; padding: 1rem; margin-bottom: 0.5rem; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <h1>Agri Connect</h1>
+  <h2>Products</h2>
+  <div id="products">Loading...</div>
+
+  <script>
+    // Ask the server for products, then show them on the page
+    fetch('/api/products')
+      .then(res => res.json())
+      .then(products => {
+        const box = document.getElementById('products');
+        if (!products.length) { box.textContent = 'No products yet.'; return; }
+        box.innerHTML = products.map(p =>
+          `<div class="product"><strong>${p.Name}</strong> - ${p.Category} - $${p.Price} (${p.Quantity} in stock)</div>`
+        ).join('');
+      })
+      .catch(() => { document.getElementById('products').textContent = 'Could not load products.'; });
+  </script>
+</body>
+</html>
