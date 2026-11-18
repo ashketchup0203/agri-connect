@@ -1,0 +1,612 @@
+Agri Connect Help Center · HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Centre - Agri Connect</title>
+ 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+ 
+    <style>
+    /* ===== BASE ===== */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+        font-size: 14px;
+        line-height: 1.7;
+        color: #2b3a2c;
+        background: #ffebd2;
+    }
+    a { color: inherit; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    :focus-visible { outline: 2px solid #1f3d2e; outline-offset: 2px; }
+ 
+    /* ===== HEADER AND FOOTER ===== */
+    .site-header { padding: 8px 48px; background: #3f5a30; }
+    .site-header img { display: block; height: 64px; width: auto; }
+ 
+    .site-footer {
+        padding: 20px 48px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 16px;
+        font-size: 14px;
+        background: #6f7a27;
+        color: #f3efd2;
+    }
+    .site-footer nav { display: flex; gap: 24px; }
+ 
+    /* ===== HERO ===== */
+    .hero {
+        position: relative;
+        overflow: hidden;
+        padding: 56px 24px 72px;
+        text-align: center;
+        color: #f3efd2;
+        background:
+            radial-gradient(circle at 15% 20%, rgba(252,215,169,.18), transparent 40%),
+            radial-gradient(circle at 85% 80%, rgba(111,122,39,.5), transparent 45%),
+            linear-gradient(135deg, #3f5a30, #2d4423);
+    }
+    .hero::after {
+        content: "";
+        position: absolute;
+        left: 0; right: 0; bottom: -1px;
+        height: 36px;
+        background: #ffebd2;
+        border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    }
+    .hero-inner { position: relative; z-index: 2; max-width: 640px; margin: 0 auto; }
+    .hero .eyebrow {
+        display: inline-block;
+        margin-bottom: 12px;
+        padding: 4px 14px;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: .06em;
+        text-transform: uppercase;
+        color: #fcd7a9;
+        background: rgba(255,255,255,.1);
+        border-radius: 999px;
+    }
+    .hero h1 {
+        margin: 0 0 10px;
+        font-family: "Lora", Georgia, serif;
+        font-size: 44px;
+        font-weight: 500;
+        line-height: 1.15;
+        color: #ffffff;
+    }
+    .hero .lead { margin-bottom: 26px; font-size: 16px; color: #e6e2bf; }
+ 
+    .search { position: relative; }
+    .search input {
+        width: 100%;
+        padding: 16px 20px 16px 52px;
+        font: inherit;
+        font-size: 15px;
+        color: #2b3a2c;
+        background: #ffffff;
+        border: 2px solid transparent;
+        border-radius: 999px;
+        box-shadow: 0 8px 24px rgba(0,0,0,.18);
+        transition: border-color .15s ease, box-shadow .15s ease;
+    }
+    .search input:focus { outline: none; border-color: #fcd7a9; box-shadow: 0 8px 28px rgba(0,0,0,.28); }
+    .search .icon { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); font-size: 18px; pointer-events: none; }
+ 
+    /* floating produce */
+    .float {
+        position: absolute;
+        z-index: 1;
+        font-size: 38px;
+        opacity: .85;
+        filter: drop-shadow(0 4px 6px rgba(0,0,0,.25));
+        animation: bob 6s ease-in-out infinite;
+        user-select: none;
+    }
+    .f1 { left: 6%;  top: 24%; animation-delay: 0s; }
+    .f2 { left: 16%; bottom: 18%; animation-delay: -2s; font-size: 30px; }
+    .f3 { right: 7%; top: 18%; animation-delay: -1s; }
+    .f4 { right: 17%; bottom: 20%; animation-delay: -3.5s; font-size: 32px; }
+    @keyframes bob {
+        0%, 100% { transform: translateY(0) rotate(-4deg); }
+        50%      { transform: translateY(-12px) rotate(5deg); }
+    }
+ 
+    /* ===== PAGE CONTENT ===== */
+    .page { flex: 1; padding: 8px 24px 64px; }
+    .page-inner { max-width: 860px; margin: 0 auto; }
+ 
+    .back { display: inline-block; margin: 8px 0 24px; font-size: 14px; color: #6d6a5e; }
+ 
+    h2 { margin-bottom: 8px; font-size: 18px; font-weight: 600; color: #1f3d2e; }
+    .page a { font-weight: 600; color: #1f3d2e; text-decoration: underline; }
+ 
+    /* ===== TOPIC CARDS ===== */
+    .topics {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+        gap: 14px;
+        margin-bottom: 44px;
+    }
+    .page .topics a {
+        display: block;
+        padding: 20px 18px;
+        text-decoration: none;
+        font-weight: 400;
+        color: #2b3a2c;
+        background: #fcd7a9;
+        border-radius: 14px;
+        border-bottom: 4px solid #e9b676;
+        transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .page .topics a:hover { transform: translateY(-4px); box-shadow: 0 10px 20px rgba(63,90,48,.18); text-decoration: none; }
+    .topics .emoji { display: block; margin-bottom: 8px; font-size: 30px; }
+    .topics strong { display: block; font-size: 15px; color: #1f3d2e; }
+    .topics span.sub { font-size: 12.5px; color: #6d5a3a; }
+ 
+    /* ===== HOW IT WORKS ===== */
+    .how { margin-bottom: 48px; }
+    .how h2.section-title, .faq-group h2 {
+        font-family: "Lora", Georgia, serif;
+        font-size: 26px;
+        font-weight: 500;
+        color: #1f3d2e;
+    }
+    .how .sub-lead { margin-bottom: 18px; color: #6d6a5e; }
+ 
+    .toggle {
+        display: inline-flex;
+        margin-bottom: 22px;
+        padding: 4px;
+        background: #efe6d2;
+        border: 1px solid #e3d6b8;
+        border-radius: 999px;
+    }
+    .toggle button {
+        padding: 8px 22px;
+        font: inherit;
+        font-weight: 600;
+        color: #6d6a5e;
+        background: transparent;
+        border: 0;
+        border-radius: 999px;
+        cursor: pointer;
+        transition: background-color .15s ease, color .15s ease;
+    }
+    .toggle button.active { background: #1f3d2e; color: #ffffff; }
+ 
+    .steps { display: none; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; counter-reset: step; }
+    .steps.show { display: grid; animation: fadeUp .35s ease; }
+    .step {
+        position: relative;
+        padding: 22px 20px 20px;
+        background: #ffffff;
+        border: 1px solid #ecd5b0;
+        border-radius: 14px;
+        counter-increment: step;
+    }
+    .step::before {
+        content: counter(step);
+        position: absolute;
+        top: -14px; left: 18px;
+        width: 30px; height: 30px;
+        display: grid; place-items: center;
+        font-weight: 600;
+        color: #ffffff;
+        background: #6f7a27;
+        border-radius: 50%;
+        box-shadow: 0 3px 8px rgba(111,122,39,.4);
+    }
+    .step .emoji { font-size: 26px; }
+    .step h3 { margin: 6px 0 4px; font-size: 15px; color: #1f3d2e; }
+    .step p { font-size: 13px; color: #6d6a5e; line-height: 1.55; }
+ 
+    /* ===== FAQ ===== */
+    .faq-group { margin-bottom: 36px; scroll-margin-top: 24px; max-width: 760px; }
+    .faq-group h2 { margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+    .faq-group h2 .emoji { font-size: 24px; }
+ 
+    details { border-bottom: 1px solid #ecd5b0; transition: background-color .15s ease; }
+    details:first-of-type { border-top: 1px solid #ecd5b0; }
+    details[open] { background: rgba(255,255,255,.45); }
+    summary {
+        position: relative;
+        padding: 16px 36px 16px 8px;
+        font-weight: 600;
+        color: #2b3a2c;
+        cursor: pointer;
+        list-style: none;
+    }
+    summary:hover { color: #3f5a30; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+        content: "+";
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 22px;
+        font-weight: 400;
+        color: #1f3d2e;
+    }
+    details[open] summary::after { content: "\2212"; }
+    details p { padding: 0 36px 16px 8px; color: #6d6a5e; animation: fadeUp .25s ease; }
+    details.hidden { display: none; }
+    .faq-group.hidden { display: none; }
+ 
+    .tip {
+        margin: 0 36px 16px 8px;
+        padding: 10px 14px;
+        font-size: 13px;
+        color: #4b5a1a;
+        background: #eef0c9;
+        border-left: 4px solid #6f7a27;
+        border-radius: 4px;
+    }
+ 
+    .no-results {
+        display: none;
+        margin-bottom: 36px;
+        padding: 28px;
+        text-align: center;
+        color: #6d6a5e;
+        background: #efe6d2;
+        border: 1px dashed #d9c595;
+        border-radius: 14px;
+    }
+    .no-results .emoji { display: block; font-size: 34px; }
+ 
+    /* ===== FEEDBACK ===== */
+    .feedback {
+        margin: 12px 0 36px;
+        padding: 18px 22px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+        background: #ffffff;
+        border: 1px solid #ecd5b0;
+        border-radius: 14px;
+    }
+    .feedback strong { color: #1f3d2e; }
+    .feedback .btns { display: flex; gap: 8px; }
+    .feedback button {
+        padding: 8px 16px;
+        font: inherit;
+        font-weight: 600;
+        color: #1f3d2e;
+        background: #fcd7a9;
+        border: 0;
+        border-radius: 999px;
+        cursor: pointer;
+        transition: transform .1s ease, background-color .15s ease;
+    }
+    .feedback button:hover { background: #f8ca94; transform: scale(1.05); }
+    .feedback .thanks { display: none; color: #4b5a1a; font-weight: 600; }
+ 
+    /* ===== CONTACT ===== */
+    .contact {
+        margin-top: 8px;
+        padding: 36px 24px;
+        text-align: center;
+        color: #f3efd2;
+        background: linear-gradient(135deg, #3f5a30, #6f7a27);
+        border-radius: 18px;
+        box-shadow: 0 12px 28px rgba(63,90,48,.25);
+    }
+    .contact .emoji { font-size: 36px; }
+    .contact h2 { margin: 6px 0; font-family: "Lora", Georgia, serif; font-size: 26px; font-weight: 500; color: #ffffff; }
+    .contact p { max-width: 460px; margin: 0 auto; color: #e6e2bf; }
+    .page .contact a.contact-btn {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 13px 30px;
+        font-weight: 600;
+        text-decoration: none;
+        color: #1f3d2e;
+        background: #fcd7a9;
+        border-radius: 999px;
+        transition: transform .15s ease, background-color .15s ease;
+    }
+    .page .contact a.contact-btn:hover { background: #ffe3bd; transform: translateY(-2px); }
+    .contact .small { margin-top: 14px; font-size: 12.5px; color: #cfd29f; }
+ 
+    /* ===== BACK TO TOP ===== */
+    .to-top {
+        position: fixed;
+        right: 22px; bottom: 22px;
+        width: 46px; height: 46px;
+        display: grid; place-items: center;
+        font-size: 20px;
+        color: #ffffff;
+        background: #1f3d2e;
+        border: 0;
+        border-radius: 50%;
+        box-shadow: 0 6px 16px rgba(0,0,0,.25);
+        cursor: pointer;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(10px);
+        transition: opacity .2s ease, transform .2s ease;
+    }
+    .to-top.show { opacity: 1; pointer-events: auto; transform: none; }
+ 
+    /* ===== ANIMATION ===== */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+ 
+    @media (prefers-reduced-motion: reduce) {
+        * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+        .reveal { opacity: 1; transform: none; }
+    }
+ 
+    @media (max-width: 760px) {
+        .site-header, .site-footer { padding-left: 24px; padding-right: 24px; }
+        .hero h1 { font-size: 32px; }
+        .float { display: none; }
+        .tip, details p { margin-right: 0; padding-right: 8px; }
+    }
+    </style>
+</head>
+<body>
+ 
+    <header class="site-header">
+        <a href="index.html" class="logo">
+            <img src="Agriconnectlogo2.png" alt="Agri Connect">
+        </a>
+    </header>
+ 
+    <!-- HERO WITH SEARCH -->
+    <section class="hero">
+        <span class="float f1" aria-hidden="true">🥭</span>
+        <span class="float f2" aria-hidden="true">🍌</span>
+        <span class="float f3" aria-hidden="true">🌶️</span>
+        <span class="float f4" aria-hidden="true">🥬</span>
+ 
+        <div class="hero-inner">
+            <p class="eyebrow">Support</p>
+            <h1>How can we help you today?</h1>
+            <p class="lead">Quick answers to common questions about Agri Connect.</p>
+            <div class="search">
+                <span class="icon" aria-hidden="true">🔍</span>
+                <input type="search" id="faq-search" placeholder="Search e.g. password, order, verification..." aria-label="Search help articles" autocomplete="off">
+            </div>
+        </div>
+    </section>
+ 
+    <main class="page">
+        <div class="page-inner">
+ 
+            <a href="javascript:history.back()" class="back">← Back</a>
+ 
+            <nav class="topics reveal" aria-label="Help topics">
+                <a href="#getting-started"><span class="emoji">🌱</span><strong>Getting started</strong><span class="sub">New here? Begin here</span></a>
+                <a href="#buyers"><span class="emoji">🛒</span><strong>For buyers</strong><span class="sub">Find and order produce</span></a>
+                <a href="#farmers"><span class="emoji">🧑‍🌾</span><strong>For farmers</strong><span class="sub">List and sell your harvest</span></a>
+                <a href="#account"><span class="emoji">🔐</span><strong>Account and password</strong><span class="sub">Sign in and stay safe</span></a>
+            </nav>
+ 
+            <!-- HOW IT WORKS -->
+            <section class="how reveal" id="how-it-works">
+                <h2 class="section-title">How Agri Connect works</h2>
+                <p class="sub-lead">Three simple steps, from the farm to your pot.</p>
+ 
+                <div class="toggle" role="tablist" aria-label="Choose your role">
+                    <button type="button" class="active" data-target="steps-buyer" role="tab" aria-selected="true">I'm a buyer</button>
+                    <button type="button" data-target="steps-farmer" role="tab" aria-selected="false">I'm a farmer</button>
+                </div>
+ 
+                <div class="steps show" id="steps-buyer">
+                    <div class="step"><span class="emoji">🔎</span><h3>Browse</h3><p>Explore fresh produce from farms in your parish and across Jamaica.</p></div>
+                    <div class="step"><span class="emoji">🧺</span><h3>Order</h3><p>Pick the amount you want and place your order. The farmer is notified right away.</p></div>
+                    <div class="step"><span class="emoji">🍲</span><h3>Enjoy</h3><p>Receive your produce, fresh from the farm, and get cooking.</p></div>
+                </div>
+ 
+                <div class="steps" id="steps-farmer">
+                    <div class="step"><span class="emoji">✅</span><h3>Get verified</h3><p>Complete a quick identity and farm check before your first listing.</p></div>
+                    <div class="step"><span class="emoji">📸</span><h3>List your produce</h3><p>Add a clear photo, the amount available and your price in JMD.</p></div>
+                    <div class="step"><span class="emoji">💰</span><h3>Sell</h3><p>Confirm orders from buyers and keep your listings up to date.</p></div>
+                </div>
+            </section>
+ 
+            <div class="no-results" id="no-results">
+                <span class="emoji">🥕</span>
+                <p><strong>No answers found.</strong><br>Try a different word, or email our team below and we'll help.</p>
+            </div>
+ 
+            <!-- FAQ -->
+            <section class="faq-group reveal" id="getting-started">
+                <h2><span class="emoji">🌱</span>Getting started</h2>
+                <details>
+                    <summary>What is Agri Connect?</summary>
+                    <p>Agri Connect is an online marketplace that connects Jamaican farmers with buyers, so fresh produce can go from the farm to your pot.</p>
+                </details>
+                <details>
+                    <summary>How do I create an account?</summary>
+                    <p>Click "Create an account", choose whether you are a Buyer or a Farmer, fill in your details and agree to the Terms of use and Privacy policy. Then select "Create account".</p>
+                </details>
+                <details>
+                    <summary>Do I need an account to browse?</summary>
+                    <p>You can look around the marketplace without one. You will need an account to place orders or to list produce.</p>
+                </details>
+            </section>
+ 
+            <section class="faq-group reveal" id="buyers">
+                <h2><span class="emoji">🛒</span>For buyers</h2>
+                <details>
+                    <summary>How do I find produce near me?</summary>
+                    <p>Browse the marketplace and look for listings from farms in your parish. Each listing shows the farmer, the produce and the price in JMD.</p>
+                </details>
+                <details>
+                    <summary>How do I place an order?</summary>
+                    <p>Open a listing, choose the amount you want and follow the steps to place your order. The farmer will be notified so they can confirm it.</p>
+                </details>
+                <details>
+                    <summary>I have a problem with an order. What should I do?</summary>
+                    <p>Contact the farmer first to sort it out. If you can't resolve it, reach out to us using the details at the bottom of this page and include your order details.</p>
+                    <div class="tip">💡 <strong>Tip:</strong> Include your order details and a photo (if relevant) so we can help you faster.</div>
+                </details>
+            </section>
+ 
+            <section class="faq-group reveal" id="farmers">
+                <h2><span class="emoji">🧑‍🌾</span>For farmers</h2>
+                <details>
+                    <summary>Why do farmers need to be verified?</summary>
+                    <p>Farmers complete a quick identity and farm verification before publishing their first listing. This keeps the marketplace safe and builds trust between buyers and farmers.</p>
+                </details>
+                <details>
+                    <summary>How do I list my produce?</summary>
+                    <p>Once you are verified, open your farmer account, add your produce with a clear photo, the amount available and your price, then publish the listing.</p>
+                    <div class="tip">📸 <strong>Tip:</strong> Listings with bright, clear photos in natural light are the first ones buyers click.</div>
+                </details>
+                <details>
+                    <summary>How do I update or remove a listing?</summary>
+                    <p>Go to your listings, choose the one you want to change, and edit it or mark it as unavailable. Keep your listings up to date so buyers see accurate information.</p>
+                </details>
+            </section>
+ 
+            <section class="faq-group reveal" id="account">
+                <h2><span class="emoji">🔐</span>Account and password</h2>
+                <details>
+                    <summary>What are the password requirements?</summary>
+                    <p>Your password must be at least 8 characters and include one uppercase letter, one special character and one number.</p>
+                </details>
+                <details>
+                    <summary>I forgot my password. What now?</summary>
+                    <p>On the sign-in page, select "Forgot password?" and follow the steps to reset it using your email address.</p>
+                </details>
+                <details>
+                    <summary>Can I sign in with Google?</summary>
+                    <p>Yes. Select "Continue with Google" on the sign-in page to use your Google account instead of a password.</p>
+                </details>
+                <details>
+                    <summary>How do I delete my account?</summary>
+                    <p>Contact us using the details below and we will help you close your account. You can read more in our <a href="Agri Connect - Privacy Policy.html">Privacy Policy</a>.</p>
+                </details>
+            </section>
+ 
+            <!-- FEEDBACK -->
+            <div class="feedback reveal">
+                <strong>Did you find what you were looking for?</strong>
+                <div class="btns" id="feedback-btns">
+                    <button type="button" data-vote="yes">👍 Yes</button>
+                    <button type="button" data-vote="no">👎 Not quite</button>
+                </div>
+                <span class="thanks" id="feedback-thanks"></span>
+            </div>
+ 
+            <!-- CONTACT -->
+            <section class="contact reveal">
+                <span class="emoji">💌</span>
+                <h2>Still need help?</h2>
+                <p>Our team is happy to help. Send us a message and we will get back to you.</p>
+                <a href="mailto:agri-connectsupportteam@gmail.com" class="contact-btn">Email support</a>
+                <p class="small">Grown in Jamaica. Connected by trust. 🇯🇲</p>
+            </section>
+ 
+        </div>
+    </main>
+ 
+    <footer class="site-footer">
+        <p style="color: #DEBE95;">© 2026 Agri Connect · Grown in Jamaica ·Connected by Trust.</p>
+        <nav style="color: #DEBE95;">
+            <a href="Agri Connect - Help Center.html">Help centre</a>
+            <a href="Agri Connect - Terms of Use.html">Terms</a>
+            <a href="Agri Connect - Privacy Policy.html">Privacy</a>
+            <a href="#">JMD J$</a>
+        </nav>
+    </footer>
+ 
+    <button class="to-top" id="to-top" aria-label="Back to top">↑</button>
+ 
+    <script>
+    (function () {
+        // ----- Live search -----
+        var input = document.getElementById('faq-search');
+        var groups = document.querySelectorAll('.faq-group');
+        var noResults = document.getElementById('no-results');
+        var how = document.getElementById('how-it-works');
+ 
+        input.addEventListener('input', function () {
+            var q = input.value.trim().toLowerCase();
+            var anyVisible = false;
+ 
+            groups.forEach(function (group) {
+                var groupHit = false;
+                group.querySelectorAll('details').forEach(function (d) {
+                    var match = !q || d.textContent.toLowerCase().indexOf(q) !== -1;
+                    d.classList.toggle('hidden', !match);
+                    if (q && match) { d.open = true; } else if (!q) { d.open = false; }
+                    if (match) groupHit = true;
+                });
+                group.classList.toggle('hidden', !groupHit);
+                if (groupHit) anyVisible = true;
+            });
+ 
+            noResults.style.display = (q && !anyVisible) ? 'block' : 'none';
+            how.style.display = q ? 'none' : '';
+        });
+ 
+        // ----- Buyer / farmer toggle -----
+        document.querySelectorAll('.toggle button').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                document.querySelectorAll('.toggle button').forEach(function (b) {
+                    b.classList.remove('active');
+                    b.setAttribute('aria-selected', 'false');
+                });
+                document.querySelectorAll('.steps').forEach(function (s) { s.classList.remove('show'); });
+                btn.classList.add('active');
+                btn.setAttribute('aria-selected', 'true');
+                document.getElementById(btn.dataset.target).classList.add('show');
+            });
+        });
+ 
+        // ----- Feedback -----
+        var btns = document.getElementById('feedback-btns');
+        var thanks = document.getElementById('feedback-thanks');
+        btns.addEventListener('click', function (e) {
+            var b = e.target.closest('button');
+            if (!b) return;
+            btns.style.display = 'none';
+            thanks.style.display = 'inline';
+            thanks.textContent = b.dataset.vote === 'yes'
+                ? 'Glad we could help! 🌿'
+                : 'Sorry about that. Email us below and we will sort it out.';
+        });
+ 
+        // ----- Scroll reveal -----
+        var items = document.querySelectorAll('.reveal');
+        if ('IntersectionObserver' in window) {
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (en) {
+                    if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+                });
+            }, { threshold: 0.12 });
+            items.forEach(function (el) { io.observe(el); });
+        } else {
+            items.forEach(function (el) { el.classList.add('in'); });
+        }
+ 
+        // ----- Back to top -----
+        var top = document.getElementById('to-top');
+        window.addEventListener('scroll', function () {
+            top.classList.toggle('show', window.scrollY > 500);
+        });
+        top.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    })();
+    </script>
+</body>
+</html>
+ 

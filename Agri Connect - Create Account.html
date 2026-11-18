@@ -1,0 +1,313 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account - Agri Connect</title>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+
+
+ /* ===== HERO IMAGE (left side) ===== */
+    .hero {
+        position: relative;
+        color: #ffffff;
+        background:
+            url("Agriconnectloginsignup.jpg") center / cover no-repeat,
+            linear-gradient(180deg, #8da49c 0%, #5f7d6d 25%, #3f6342 55%, #2a4a2a 100%);
+    }
+
+    /* STRUCTURE ONLY: layout, spacing, sizing. No colours, no fonts. */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { min-height: 100vh; display: flex; flex-direction: column; font-size: 14px; }
+    a { text-decoration: none; color: inherit; }
+
+    /* Header and footer */
+    .site-header { padding: 8px 48px; }
+    .site-header img { display: block; height: 64px; width: auto; }
+    .site-footer { padding: 20px 48px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; font-size: 14px; }
+    .site-footer nav { display: flex; gap: 24px; }
+
+    /* Two-column split */
+    .split { flex: 1; display: grid; grid-template-columns: 5fr 7fr; }
+
+    /* Hero */
+    .hero { padding: 56px 48px; min-height: 360px; }
+    .hero-title { font-size: 40px; line-height: 1.2; text-transform: uppercase; max-width: 11em; }
+    .hero-location { margin-top: 36px; display: flex; align-items: center; gap: 10px; font-size: 14px; }
+    .icon { width: 18px; height: 18px; }
+
+    /* Panel + card */
+    .panel { display: flex; align-items: flex-start; justify-content: center; padding: 20px 24px 32px; }
+    .card { width: 100%; max-width: 640px; }
+    .card-back { display: inline-block; font-size: 14px; margin-bottom: 24px; }
+    .card-eyebrow { font-size: 12px; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 4px; }
+    .card-title { font-size: 40px; line-height: 1.15; margin: 14px 0; }
+    .card-sub { font-size: 14px; margin-bottom: 28px; }
+
+    /* Role picker (Buyer / Farmer) */
+    .role-picker { border: 0; margin-bottom: 28px; }
+    .role-picker legend { font-size: 13px; margin-bottom: 14px; }
+    .role-options { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .role { position: relative; display: flex; flex-direction: column; gap: 6px; padding: 20px; min-height: 110px; cursor: pointer; }
+    .role input { position: absolute; top: 16px; right: 16px; width: 18px; height: 18px; }
+    .role-icon { width: 20px; height: 20px; display: block; margin-bottom: 14px; }
+    .role-name { font-size: 14px; }
+    .role-desc { font-size: 12px; }
+
+    /* Fields */
+    .field { margin-bottom: 24px; }
+    .field label { display: block; font-size: 13px; margin-bottom: 10px; }
+    .field input, .field select { width: 100%; height: 46px; padding: 0 18px; font-size: 14px; }
+    .field-hint { margin-top: 8px; font-size: 12px; }
+
+    /* Two fields side by side */
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+    /* Verification notice */
+    .notice { display: flex; align-items: center; gap: 12px; padding: 14px 18px; margin-bottom: 24px; font-size: 12px; }
+    .notice-icon { flex: none; width: 18px; height: 18px; }
+
+    /* Terms checkbox */
+    .terms { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 24px; font-size: 12px; }
+    .terms input { flex: none; width: 16px; height: 16px; margin-top: 1px; }
+
+    /* Button */
+    .btn { width: 100%; height: 46px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; }
+
+    /* Card footer */
+    .card-signin, .card-legal { text-align: center; }
+    .card-signin { margin-top: 24px; font-size: 14px; }
+    .card-signin a { margin-left: 6px; }
+    .card-legal { margin-top: 18px; font-size: 11px; text-align: left; }
+    
+    /* ===== COLOURS: body, header, footer ===== */
+    body { background: #ffebd2; color: #2b3a2c; }
+    .site-header { background: #3f5a30; }
+    .site-footer { background: #6f7a27; color: #f3efd2; }
+
+
+    /* ===== ROLE CARDS ===== */
+    .role { background: #fcd7a9; border: 2px solid transparent; border-radius: 6px; transition: border-color .15s ease; }
+    .role:hover { background: #f8ca94; }
+    .role:has(input:checked) { border-color: #1f3d2e; }
+    .role-name { font-weight: 600; color: #1f3d2e; }
+    .role-desc { color: #6d6a5e; }
+
+    .role input {
+        -webkit-appearance: none; appearance: none;
+        border: 1.5px solid #1f3d2e; border-radius: 50%;
+        background: transparent; cursor: pointer;
+    }
+    .role input:checked { background: radial-gradient(circle, #1f3d2e 0 4px, transparent 5px); }
+    
+    /* ===== INPUT BOXES ===== */
+    .field label { font-weight: 600; }
+    .field input, .field select {
+        background-color: #fcd7a9;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        font-family: inherit;
+        color: #2b3a2c;
+    }
+    .field input:focus, .field select:focus { outline: none; border-color: #1f3d2e; }
+    .field-hint { color: #6d6a5e; }
+
+
+        /* ===== NOTICE BOX + CHECKBOX ===== */
+    .notice { background: #efe6d2; border: 1px solid #e3d6b8; border-radius: 6px; color: #6d6a5e; }
+    .terms { color: #6d6a5e; }
+    .terms input { accent-color: #1f3d2e; }
+    .terms a { color: #1f3d2e; font-weight: 600; text-decoration: underline; }
+
+
+        /* ===== ROLE ICONS (basket = Buyer, sprout = Farmer) ===== */
+    .role-icon {
+        background: #1f3d2e;
+        -webkit-mask-repeat: no-repeat;     mask-repeat: no-repeat;
+        -webkit-mask-position: left center; mask-position: left center;
+        -webkit-mask-size: contain;         mask-size: contain;
+    }
+
+    /* Buyer: basket */
+    .role:nth-child(1) .role-icon {
+        -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 9h18l-2 11H5L3 9zM8 4L5 9m11-5l3 5'/%3E%3C/svg%3E");
+                mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 9h18l-2 11H5L3 9zM8 4L5 9m11-5l3 5'/%3E%3C/svg%3E");
+    }
+
+    /* Farmer: sprout */
+    .role:nth-child(2) .role-icon {
+        -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 21v-9m0 0c0-4 3-6 7-6 0 4-3 6-7 6zm0 3c0-3-2-5-6-5 0 3 2 5 6 5z'/%3E%3C/svg%3E");
+                mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 21v-9m0 0c0-4 3-6 7-6 0 4-3 6-7 6zm0 3c0-3-2-5-6-5 0 3 2 5 6 5z'/%3E%3C/svg%3E");
+    }
+
+        /* ===== NOTICE SHIELD ICON ===== */
+    .notice-icon {
+        background: #1f3d2e;
+        -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'/%3E%3Cpath d='M9 12l2 2 4-4'/%3E%3C/svg%3E") center / contain no-repeat;
+                mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'/%3E%3Cpath d='M9 12l2 2 4-4'/%3E%3C/svg%3E") center / contain no-repeat;
+    }
+
+        /* ===== CREATE ACCOUNT BUTTON ===== */
+    .btn {
+        width: 100%;
+        height: 46px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        border: 0;
+        border-radius: 4px;
+        font-family: inherit;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color .15s ease;
+    }
+    .btn-primary { background: #1f3d2e; color: #ffffff; }
+    .btn-primary:hover { background: #17301f; }
+          
+          @media (max-width: 760px) {
+            .split { grid-template-columns: 1fr; }
+            .hero { min-height: 220px; }
+            .hero-title { font-size: 28px; }
+            .role-options, .form-row { grid-template-columns: 1fr; }
+            .site-header, .site-footer { padding-left: 24px; padding-right: 24px; }
+        
+        }
+    </style>
+
+</head>
+<body>
+
+<header class="site-header">
+    <a href="#" class="logo">
+        <img src="Agriconnectlogo2.png" alt="Agri Connect Logo">
+    </a>
+</header>
+
+<main class="split">
+
+    <section class="hero" aria-label="Agri Connect">
+        <h1 class="hero-title">From Di Farm, To Yuh Pot!</h1>
+        <p class="hero-location">
+            <span class="icon" aria-hidden="true"></span>
+            Rooted in Jamaica · Built for Our Communities 
+        </p>
+    </section>
+
+    <section class="panel">
+        <div class="card">
+            <a href="#" class="card-back"> ← Back to Marketplace</a>
+
+            <p class="card-eyebrow" style="color: #6D7744;"><strong> Join Our Growing Community</strong></p>
+            <h2 class="card-title">Make Yourself at Home.</h2>
+            <p class="card-sub">One Account. More Possibilities For Your Farm and Table</p>
+
+            <form id="SignUp" novalidate>
+                <fieldset class="role-picker">
+                    <legend><strong>How Would You Like to Use Agri Connect?</strong> </legend>
+                    <div class="role-options">
+                        <label class="role">
+                            <input type="radio" name="role" value="buyer">
+                            <span class="role-icon" aria-hidden="true"></span>
+                            <span class="role-name">Buyer</span>
+                            <span class="role-desc">Shop Farm-fresh Produce</span>
+                        </label>
+                        <label class="role">
+                            <input type="radio" name="role" value="farmer" checked>
+                            <span class="role-icon" aria-hidden="true"></span>
+                            <span class="role-name">Farmer</span>
+                            <span class="role-desc">List Produce and Grow Sales</span>
+                        </label>
+                    </div>
+                </fieldset>
+
+                <div class="form-row">
+                    <div class="field">
+                    <label for="first-name">First Name</label>
+                    <input type="text" id="first-name" name="first-name" autocomplete="given-name" placeholder="John" required>
+                    </div>
+                <div class="field">
+                    <label for="last-name">Last Name</label>
+                    <input type="text" id="last-name" name="last-name" autocomplete="family-name" placeholder="Doe" required>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="field">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com" required>
+                </div>
+
+                    <div class="from-row">
+                        <div class="field">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="(876) 555-5555" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="parish">Parish</label>
+                        <select name= "parish" id="parish" required>
+                            <option value="">Select a Parish</option>
+                            <option value="Kingston">Kingston</option>
+                            <option value="St. Andrew">St. Andrew</option>
+                            <option value="St. Thomas">St. Thomas</option>
+                            <option value="Portland">Portland</option>
+                            <option value="St. Mary">St. Mary</option>
+                            <option value="St. Ann">St. Ann</option>
+                            <option value="Trelawny">Trelawny</option>
+                            <option value="St. James">St. James</option>
+                            <option value="Hanover">Hanover</option>
+                            <option value="Westmoreland">Westmoreland</option>
+                            <option value="St. Elizabeth">St. Elizabeth</option>
+                            <option value="Manchester">Manchester</option>
+                            <option value="Clarendon">Clarendon</option>
+                            <option value="St. Catherine">St. Catherine</option>
+                        </select>
+                    </div>
+                </div>
+                    
+                    <div class="field">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" autocomplete="new-password" placeholder="••••••••" required>
+
+                        <p class="field-hint">Your password must be at least 8 characters long and include a mix of letters and numbers.</p>
+                    </div>
+
+                    <div class="notice">
+                        <span class="notice-icon" aria-hidden="true"></span>
+                        <p class="notice-text">Farmers Complete a Quick Identity and Farm Verification Before Publishing Their First Listing.</p>
+                    </div>
+                    <label class="terms">
+                        <input type="checkbox" style="background-color: #203F32;" required>
+                        <span>I agree to the <a href="Terms of Use- Agri Connect.html">Terms of use</a> and <a href="Privacy Policy - Agri Connect.html">Privacy policy</a>.</span>
+                    </label>
+                    
+                    <button type="submit" class="btn btn-primary" style="background-color: #203F32; color: #fcd7a9;"> → Create Farmer Account</button>
+                </form>
+                <p class="card-signin">Already have an account?<a href="Agri Connect Sign In.html"><strong style="text-decoration: underline; color: #203F32;">Sign In</strong></a></p>
+                <p class="card-legal">© 2026 Agri Connect · Supporting Jamaica's Farmers</p>
+            </div>
+        </section>
+    
+    
+    </main>
+    
+    <footer class="site-footer">
+        <p style="color: #DEBE95;">© 2026 Agri Connect · Grown in Jamaica ·Connected by Trust.</p>
+        <nav style="color: #DEBE95;">
+            <a href="Agri Connect - Help Center.html">Help centre</a>
+            <a href="Agri Connect - Terms of Use.html">Terms</a>
+            <a href="Agri Connect - Privacy Policy.html">Privacy</a>
+            <a href="#">JMD J$</a>
+        </nav>
+    </footer>
+
+</body>
+</html>
