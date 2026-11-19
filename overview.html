@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Farmer hub | Agri Connect</title>
+  <link rel="stylesheet" href="css/header-menus.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --hdr: #3e4a23;
+      --cream: #feebd4;
+      --card: #fcd8aa;
+      --dark: #1f3d2e;
+      --side: #234232;
+      --olive: #5d6c2a;
+      --bar: #6e7d3d;
+      --gold: #d8c24a;
+      --tx: #24402f;
+      --mut: #7a7a52;
+      --row: #e8efdc;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    a { text-decoration: none; color: inherit; }
+    html, body { background: var(--cream); }
+
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      color: var(--tx);
+      font-size: 14px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* ---------- Header ---------- */
+    header {
+      background: var(--hdr);
+      height: 68px;
+      display: flex;
+      align-items: center;
+      padding: 0 28px;
+      position: relative;
+      color: #e9e6c9;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      width: 260px;
+      height: 56px;
+    }
+
+    .logo img {
+      max-height: 56px;
+      max-width: 240px;
+      object-fit: contain;
+    }
+
+    nav {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 34px;
+      font-size: 13.5px;
+    }
+
+    nav a { padding: 24px 0; color: #d7d9bb; }
+    nav a.on { color: #fff; font-weight: 600; border-bottom: 2px solid var(--gold); }
+
+    .hr {
+      margin-left: auto;
+      display: flex;
+      gap: 26px;
+      align-items: center;
+      font-size: 13px;
+      color: #ecdca0;
+    }
+
+    /* ---------- Layout ---------- */
+    .wrap { display: flex; flex: 1; }
+
+    aside {
+      width: 176px;
+      background: var(--side);
+      color: #e4eadf;
+      padding: 20px 8px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    aside .lbl {
+      font-size: 9.5px;
+      letter-spacing: .6px;
+      text-transform: uppercase;
+      padding: 0 4px;
+      margin-bottom: 12px;
+      color: #fff;
+    }
+
+    aside a {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      padding: 12px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      color: #e4eadf;
+    }
+
+    aside a:hover { background: #2c4d3b; }
+    aside a.on { background: #355543; font-weight: 600; }
+
+    aside svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    aside a.back-market {
+      color: #f3d98a;
+      border: 1px solid rgba(243, 217, 138, .35);
+      margin-bottom: 8px;
+    }
+
+    .ver {
+      margin-top: 14px;
+      background: #2d4d3b;
+      border-radius: 10px;
+      padding: 16px 14px;
+      font-size: 11px;
+      line-height: 1.6;
+      color: #d3dccd;
+    }
+
+    .ver b { display: block; font-size: 13px; color: #fff; margin: 10px 0 4px; }
+
+    main { flex: 1; padding: 24px 18px; min-width: 0; }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 18px;
+    }
+
+    .date {
+      font-size: 10px;
+      letter-spacing: .8px;
+      color: var(--mut);
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    h1 { font-family: 'Lora', serif; font-weight: 400; font-size: 32px; margin: 8px 0 4px; }
+    .sub { font-size: 12px; color: var(--mut); }
+
+    .btn {
+      background: var(--dark);
+      color: #fff;
+      border-radius: 8px;
+      padding: 13px 20px;
+      font-weight: 600;
+      font-size: 13.5px;
+      margin-top: 8px;
+      display: inline-block;
+    }
+
+    /* ---------- Stat cards ---------- */
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .card { background: var(--card); border-radius: 14px; }
+    .stat { padding: 20px 20px 16px; }
+    .stat .l { font-size: 11px; color: #6b6a45; }
+    .stat .v { font-family: 'Lora', serif; font-size: 32px; margin: 8px 0; }
+    .stat .s { font-size: 9.5px; color: #7a6a45; }
+
+    /* ---------- Alert ---------- */
+    .alert {
+      background: #f8ecd2;
+      border-radius: 8px;
+      margin: 20px 0;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 12px;
+    }
+
+    .alert .c { width: 14px; height: 14px; border: 1.5px solid #8a7a30; border-radius: 50%; }
+    .alert a { margin-left: auto; color: #8a6d1e; font-weight: 600; font-size: 11px; }
+
+    /* ---------- Orders ---------- */
+    .sec { padding: 22px 14px 14px; }
+
+    .sh {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      padding-left: 2px;
+    }
+
+    .sh h2 { font-size: 15px; font-weight: 600; }
+    .sh a, .link { font-size: 11px; font-weight: 600; color: var(--olive); }
+
+    .orders { margin-bottom: 22px; }
+    .orders .sh { padding: 0 6px; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 10.5px; }
+
+    th {
+      background: var(--row);
+      text-align: left;
+      font-weight: 500;
+      font-size: 9.5px;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      padding: 12px 14px;
+      color: #5a6a4a;
+    }
+
+    td { padding: 17px 14px; border-bottom: 1px solid #eebf86; vertical-align: middle; }
+    tr:last-child td { border-bottom: 0; }
+    td b { font-weight: 700; }
+    .act { color: var(--olive); font-weight: 600; }
+
+    /* ---------- Listings + chart ---------- */
+    .bottom { display: grid; grid-template-columns: 1.62fr 1fr; gap: 16px; }
+    .li { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+
+    .th {
+      width: 34px;
+      height: 34px;
+      border-radius: 6px;
+      flex-shrink: 0;
+      object-fit: cover;
+      background: #e8b676;
+    }
+
+    .li .n { font-size: 11px; font-weight: 600; }
+    .li .d { font-size: 8.5px; color: #7a6a45; margin-top: 4px; }
+
+    .pill {
+      margin-left: auto;
+      background: #f2f0df;
+      border-radius: 20px;
+      font-size: 8.5px;
+      font-weight: 600;
+      padding: 5px 10px;
+    }
+
+    .edit { font-size: 9px; color: #8a7a55; margin-left: 6px; }
+
+    .chart { padding: 22px 20px 18px; }
+    .chart .m { font-size: 9px; color: #7a6a45; margin: -8px 0 12px; }
+    .bars { display: flex; align-items: flex-end; gap: 10px; height: 96px; margin-top: 12px; }
+    .bars div { flex: 1; background: var(--bar); border-radius: 3px 3px 0 0; }
+    .days { display: flex; gap: 10px; margin-top: 8px; font-size: 8px; color: #7a6a45; }
+    .days span { flex: 1; text-align: center; }
+    .chart .f { font-size: 9.5px; color: var(--olive); font-weight: 600; margin-top: 18px; }
+
+    /* ---------- Footer ---------- */
+    footer {
+      background: var(--olive);
+      color: #eaecc7;
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 28px;
+      font-size: 10px;
+    }
+
+    footer a, footer span { margin-left: 22px; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 900px) {
+      header { flex-wrap: wrap; height: auto; padding: 12px 18px; row-gap: 4px; }
+      nav { position: static; transform: none; order: 3; width: 100%; gap: 24px; }
+      nav a { padding: 8px 0; }
+      .hr { gap: 18px; }
+      .wrap { flex-direction: column; }
+      aside { width: 100%; flex-direction: row; flex-wrap: wrap; padding: 12px; }
+      aside .lbl, .ver { display: none; }
+      aside a { padding: 9px 12px; }
+      aside a.back-market { margin-bottom: 0; }
+      .top { flex-direction: column; gap: 6px; }
+      .stats { grid-template-columns: 1fr 1fr; }
+      .bottom { grid-template-columns: 1fr; }
+      .orders { overflow-x: auto; }
+      table { min-width: 640px; }
+    }
+
+    /* ---------- Added for the live data (js/overview.js) ---------- */
+    .hr a:hover, nav a:hover { color: #fff; }
+    .notice {
+      background: #f8ecd2; border-left: 4px solid #c9a227; border-radius: 8px;
+      padding: 12px 16px; margin-bottom: 18px; font-size: 12.5px;
+    }
+    .notice[hidden], .alert[hidden], [hidden] { display: none !important; }
+    .ver.pending b { color: #f3d98a; }
+    .ver .ic { font-size: 14px; }
+    .empty { padding: 18px 14px; color: var(--mut); font-size: 12px; }
+    .act button {
+      background: none; border: 0; font: inherit; color: var(--olive);
+      font-weight: 600; cursor: pointer; padding: 0;
+    }
+    .act button:hover, .act a:hover, .sh a:hover, .link:hover, .edit:hover { text-decoration: underline; }
+    .act button:disabled { opacity: .6; cursor: wait; }
+    .status-Pending { color: #9a5b12; font-weight: 600; }
+    .status-Cancelled { color: #a33; }
+    .pill.Low-stock, .pill.Sold-out { background: #f6dcc0; color: #8a4a12; }
+    .pill.Pending-review { background: #f3ecc4; color: #6b5a10; }
+    .pill.Not-approved { background: #f4d4cc; color: #8a2a1a; }
+    .bars div { min-height: 3px; position: relative; }
+    .bars div.today { background: var(--dark); }
+    .page-error {
+      background: #fbe3da; color: #c0392b; border-radius: 8px;
+      padding: 14px 18px; font-weight: 600; margin-bottom: 18px;
+    }
+  </style>
+</head>
+
+<body class="farmer-hub">
+
+  <!-------- HEADER -------->
+  <header>
+    <a class="logo" href="index.html">
+      <img src="Agriconnectlogo1.png" alt="Agri Connect">
+    </a>
+
+    <nav>
+      <a href="index.html">Marketplace</a>
+      <a href="orders.html">My orders</a>
+      <a class="on" href="overview.html">Farmer hub</a>
+    </nav>
+
+    <div class="hr">
+      <a href="cart.html" id="cart-link">🧺 Cart (0)</a>
+      <a href="#" id="bell" title="Notifications">🔔</a>
+      <a href="#" id="sign-out">Sign out</a>
+    </div>
+  </header>
+
+  <div class="wrap">
+
+    <!------- SIDEBAR --------->
+    <aside>
+      <div class="lbl">Farmer workspace</div>
+      <a href="index.html" class="back-market"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9"></path><path d="M3 9h18v2a3 3 0 0 1-6 0 3 3 0 0 1-6 0 3 3 0 0 1-6 0z"></path><path d="M5 13v8h14v-8"></path><path d="M10 21v-5h4v5"></path></svg>Back to marketplace</a>
+      <a class="on" href="overview.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>Overview</a>
+      <a href="my-listings.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"></rect><path d="M9 4V3h6v1"></path><path d="M9 13l2 2 4-4"></path></svg>My listings</a>
+      <a href="orders.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><path d="M3.3 7L12 12l8.7-5"></path><path d="M12 22V12"></path></svg>Orders</a>
+      <a href="payouts.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"></rect><path d="M3 9h18"></path><path d="M9 13a3 3 0 0 0 6 0"></path></svg>Payouts</a>
+      <a href="farm-profile.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7H5a2 2 0 0 1 0-4h13v4"></path><path d="M3 5v14a2 2 0 0 0 2 2h15V7"></path><path d="M16 14h.01"></path></svg>Farm profile</a>
+      <a href="settings.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>Settings</a>
+
+      <!-- Filled in from the database -->
+      <div class="ver" id="ver-box">
+        <span class="ic" id="ver-icon">◯</span>
+        <b id="ver-title">Farmer</b>
+        <span id="ver-farm">Loading…</span><br><span id="ver-parish"></span>
+      </div>
+    </aside>
+
+    <!--------- MAIN -------->
+    <!-- Everything below is filled in by js/overview.js from /api/farmer/overview -->
+    <main>
+      <div class="page-error" id="page-error" hidden></div>
+
+      <div class="notice" id="verify-notice" hidden>
+        Your farm is waiting for RADA verification. You can look around, but you can publish listings once an admin verifies your RADA number.
+      </div>
+
+      <div class="top">
+        <div>
+          <div class="date" id="today">&nbsp;</div>
+          <h1 id="greeting">Welcome.</h1>
+          <div class="sub" id="subtitle">&nbsp;</div>
+        </div>
+        <a class="btn" href="create-listing.html">＋&nbsp; Create listing</a>
+      </div>
+
+      <!-------- Stats --------->
+      <div class="stats">
+        <div class="card stat">
+          <div class="l">Sales this month</div>
+          <div class="v" id="stat-sales">–</div>
+          <div class="s" id="stat-sales-sub">&nbsp;</div>
+        </div>
+        <div class="card stat">
+          <div class="l">Active listings</div>
+          <div class="v" id="stat-listings">–</div>
+          <div class="s" id="stat-listings-sub">&nbsp;</div>
+        </div>
+        <div class="card stat">
+          <div class="l">Orders to fulfil</div>
+          <div class="v" id="stat-orders">–</div>
+          <div class="s" id="stat-orders-sub">&nbsp;</div>
+        </div>
+        <div class="card stat">
+          <div class="l">Farm rating</div>
+          <div class="v" id="stat-rating">–</div>
+          <div class="s" id="stat-rating-sub">&nbsp;</div>
+        </div>
+      </div>
+
+      <!-- Alert (only shows when orders need confirming) -->
+      <div class="alert" id="alert" hidden>
+        <span class="c"></span>
+        <span id="alert-text"></span>
+        <a href="#recent-orders">Review orders →</a>
+      </div>
+
+      <!-- Recent orders -->
+      <div class="card sec orders" id="recent-orders" style="margin-top:20px">
+        <div class="sh">
+          <h2>Recent orders</h2>
+          <a href="orders.html">View all orders →</a>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Order / Buyer</th>
+              <th>Items</th>
+              <th>Your total</th>
+              <th>Ordered · Delivery</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="orders-body">
+            <tr><td colspan="6" class="empty">Loading orders…</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Listings and chart -->
+      <div class="bottom">
+
+        <div class="card sec">
+          <div class="sh"><h2>Your listings</h2></div>
+          <div id="listings">
+            <div class="empty">Loading listings…</div>
+          </div>
+          <a class="link" href="my-listings.html" id="manage-link">Manage your listings →</a>
+        </div>
+
+        <div class="card chart">
+          <div class="sh"><h2>Sales this week</h2></div>
+          <div class="m" id="week-meta">&nbsp;</div>
+          <div class="bars" id="bars"></div>
+          <div class="days" id="days"></div>
+          <div class="f" id="week-compare">&nbsp;</div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!------- FOOTER ------->
+  <footer>
+    <div style="color: #DEBE95;">© 2026 Agri Connect · Grown in Jamaica. Connected by trust.</div>
+    <div>
+      <a style="color: #DEBE95;" href="Agri Connect - Help Center.html">Help centre</a>
+      <a style="color: #DEBE95;" href="Agri Connect - Terms of Use.html">Terms</a>
+      <a style="color: #DEBE95;" href="Agri Connect - Privacy Policy.html">Privacy</a>
+      <span style="color: #DEBE95;">JMD J$</span>
+    </div>
+  </footer>
+
+  <script src="js/cart-store.js"></script>
+  <script src="js/overview.js"></script>
+  <script src="js/notifications.js"></script>
+</body>
+
+</html>

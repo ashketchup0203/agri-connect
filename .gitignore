@@ -147,3 +147,7 @@ vite.config.ts.timestamp-*
 
 # Turbo Repo
 .turbo
+
+# Uploaded listing photos and private documents
+uploads/
+private_uploads/

@@ -1,0 +1,79 @@
+/* =========================================
+   SIGN IN + CREATE ACCOUNT: extra styles for the working forms
+   (show/hide password, error messages, farmer-only fields)
+   ========================================= */
+
+/* Show / hide password button inside the password box */
+.toggle-password {
+    background: none;
+    color: #1f3d2e;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.toggle-password:hover {
+    color: #6f7a27;
+}
+
+.field-password input {
+    padding-right: 48px;
+}
+
+/* Red text under a field */
+.auth-field-error {
+    margin: -18px 0 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #c0392b;
+}
+
+/* Wrong password, email already used, server problems */
+.auth-form-error {
+    margin: 0 0 16px;
+    padding: 10px 12px;
+    border-radius: 4px;
+    background-color: #fbe3da;
+    color: #c0392b;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* Boxes that need fixing */
+.field input.auth-invalid,
+.field select.auth-invalid {
+    border-color: #c0392b !important;
+    background-color: #fbe3da !important;
+}
+
+.terms.auth-invalid {
+    color: #c0392b;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+/* Buttons while the form is sending */
+.btn:disabled {
+    opacity: 0.7;
+    cursor: wait;
+}
+
+/* Password hint turns red if the password doesn't meet the rules */
+.field-hint.auth-hint-error {
+    color: #c0392b;
+    font-weight: 600;
+}
+
+/* Same fonts as the Sign In page (Create Account didn't set any, so it showed in Times) */
+body {
+    font-family: "Inter", system-ui, sans-serif;
+}
+
+.card-title {
+    font-family: "Lora", Georgia, serif;
+    font-weight: 500;
+}

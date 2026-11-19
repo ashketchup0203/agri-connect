@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agri Connect – Farmer Workspace</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --hdr: #3e4a23;
+      --cream: #feebd4;
+      --card: #fcd8aa;
+      --dark: #1f3d2e;
+      --side: #234232;
+      --olive: #5d6c2a;
+      --bar: #6e7d3d;
+      --gold: #d8c24a;
+      --tx: #24402f;
+      --mut: #7a7a52;
+      --row: #e8efdc;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    a { text-decoration: none; color: inherit; }
+    html, body { background: var(--cream); }
+
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      color: var(--tx);
+      font-size: 14px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* ---------- Header ---------- */
+    header {
+      background: var(--hdr);
+      height: 68px;
+      display: flex;
+      align-items: center;
+      padding: 0 28px;
+      position: relative;
+      color: #e9e6c9;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      width: 260px;
+      height: 56px;
+    }
+
+    .logo img {
+      max-height: 56px;
+      max-width: 240px;
+      object-fit: contain;
+    }
+
+    nav {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 34px;
+      font-size: 13.5px;
+    }
+
+    nav a { padding: 24px 0; color: #d7d9bb; }
+    nav a.on { color: #fff; font-weight: 600; border-bottom: 2px solid var(--gold); }
+
+    .hr {
+      margin-left: auto;
+      display: flex;
+      gap: 26px;
+      align-items: center;
+      font-size: 13px;
+      color: #ecdca0;
+    }
+
+    /* ---------- Layout ---------- */
+    .wrap { display: flex; flex: 1; }
+
+    aside {
+      width: 176px;
+      background: var(--side);
+      color: #e4eadf;
+      padding: 20px 8px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    aside .lbl {
+      font-size: 9.5px;
+      letter-spacing: .6px;
+      text-transform: uppercase;
+      padding: 0 4px;
+      margin-bottom: 12px;
+      color: #fff;
+    }
+
+    aside a {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      padding: 12px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      color: #e4eadf;
+    }
+
+    aside a:hover { background: #2c4d3b; }
+    aside a.on { background: #355543; font-weight: 600; }
+
+    aside i {
+      width: 14px;
+      height: 14px;
+      border: 1.5px solid currentColor;
+      border-radius: 3px;
+      display: inline-block;
+    }
+
+    .ver {
+      margin-top: 14px;
+      background: #2d4d3b;
+      border-radius: 10px;
+      padding: 16px 14px;
+      font-size: 11px;
+      line-height: 1.6;
+      color: #d3dccd;
+    }
+
+    .ver b { display: block; font-size: 13px; color: #fff; margin: 10px 0 4px; }
+
+    main { flex: 1; padding: 24px 18px; min-width: 0; }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 18px;
+    }
+
+    .date {
+      font-size: 10px;
+      letter-spacing: .8px;
+      color: var(--mut);
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    h1 { font-family: 'Lora', serif; font-weight: 400; font-size: 32px; margin: 8px 0 4px; }
+    .sub { font-size: 12px; color: var(--mut); }
+
+    .btn {
+      background: var(--dark);
+      color: #fff;
+      border-radius: 8px;
+      padding: 13px 20px;
+      font-weight: 600;
+      font-size: 13.5px;
+      margin-top: 8px;
+      display: inline-block;
+    }
+
+    /* ---------- Stat cards ---------- */
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .card { background: var(--card); border-radius: 14px; }
+    .stat { padding: 20px 20px 16px; }
+    .stat .l { font-size: 11px; color: #6b6a45; }
+    .stat .v { font-family: 'Lora', serif; font-size: 32px; margin: 8px 0; }
+    .stat .s { font-size: 9.5px; color: #7a6a45; }
+
+    /* ---------- Alert ---------- */
+    .alert {
+      background: #f8ecd2;
+      border-radius: 8px;
+      margin: 20px 0;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 12px;
+    }
+
+    .alert .c { width: 14px; height: 14px; border: 1.5px solid #8a7a30; border-radius: 50%; }
+    .alert a { margin-left: auto; color: #8a6d1e; font-weight: 600; font-size: 11px; }
+
+    /* ---------- Orders ---------- */
+    .sec { padding: 22px 14px 14px; }
+
+    .sh {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      padding-left: 2px;
+    }
+
+    .sh h2 { font-size: 15px; font-weight: 600; }
+    .sh a, .link { font-size: 11px; font-weight: 600; color: var(--olive); }
+
+    .orders { margin-bottom: 22px; }
+    .orders .sh { padding: 0 6px; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 10.5px; }
+
+    th {
+      background: var(--row);
+      text-align: left;
+      font-weight: 500;
+      font-size: 9.5px;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      padding: 12px 14px;
+      color: #5a6a4a;
+    }
+
+    td { padding: 17px 14px; border-bottom: 1px solid #eebf86; vertical-align: middle; }
+    tr:last-child td { border-bottom: 0; }
+    td b { font-weight: 700; }
+    .act { color: var(--olive); font-weight: 600; }
+
+    /* ---------- Listings + chart ---------- */
+    .bottom { display: grid; grid-template-columns: 1.62fr 1fr; gap: 16px; }
+    .li { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+
+    .th {
+      width: 34px;
+      height: 34px;
+      border-radius: 6px;
+      flex-shrink: 0;
+      object-fit: cover;
+      background: #e8b676;
+    }
+
+    .li .n { font-size: 11px; font-weight: 600; }
+    .li .d { font-size: 8.5px; color: #7a6a45; margin-top: 4px; }
+
+    .pill {
+      margin-left: auto;
+      background: #f2f0df;
+      border-radius: 20px;
+      font-size: 8.5px;
+      font-weight: 600;
+      padding: 5px 10px;
+    }
+
+    .edit { font-size: 9px; color: #8a7a55; margin-left: 6px; }
+
+    .chart { padding: 22px 20px 18px; }
+    .chart .m { font-size: 9px; color: #7a6a45; margin: -8px 0 12px; }
+    .bars { display: flex; align-items: flex-end; gap: 10px; height: 96px; margin-top: 12px; }
+    .bars div { flex: 1; background: var(--bar); border-radius: 3px 3px 0 0; }
+    .days { display: flex; gap: 10px; margin-top: 8px; font-size: 8px; color: #7a6a45; }
+    .days span { flex: 1; text-align: center; }
+    .chart .f { font-size: 9.5px; color: var(--olive); font-weight: 600; margin-top: 18px; }
+
+    /* ---------- Footer ---------- */
+    footer {
+      background: var(--olive);
+      color: #eaecc7;
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 28px;
+      font-size: 10px;
+    }
+
+    footer a, footer span { margin-left: 22px; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 900px) {
+      aside, nav { display: none; }
+      .stats { grid-template-columns: 1fr 1fr; }
+      .bottom { grid-template-columns: 1fr; }
+      .orders { overflow-x: auto; }
+      table { min-width: 640px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-------- HEADER -------->
+  <header>
+
+    <!-- LOGO SLOT: paste your logo image URL inside src="" -->
+    <a class="logo" href="index.html">
+      <img src="Agriconnectlogo1.png" alt="Agri Connect">
+    </a>
+
+    <nav>
+      <a class="on" href="#">Marketplace</a>
+      <a href="#">My orders</a>
+      <a href="#">Farmer hub</a>
+    </nav>
+
+    <div class="hr">
+      <a href="#">🧺 Cart (2)</a>
+      <a href="#">🔔</a>
+    </div>
+  </header>
+
+  <div class="wrap">
+
+    <!------- SIDEBAR --------->
+    <aside>
+      <div class="lbl">Farmer workspace</div>
+      <a class="on" href="#"><i></i>Overview</a>
+      <a href="#"><i></i>My listings</a>
+      <a href="#"><i></i>Orders</a>
+      <a href="#"><i></i>Payouts</a>
+      <a href="#"><i></i>Farm profile</a>
+      <a href="#"><i></i>Settings</a>
+
+      <div class="ver">
+        ◯
+        <b>Verified farmer</b>
+        Green Valley Farm<br>Manchester, Jamaica
+      </div>
+    </aside>
+
+    <!--------- MAIN -------->
+    <main>
+      <div class="top">
+        <div>
+          <div class="date">Tuesday, 6 October 2026</div>
+          <h1>Good morning, Marcia.</h1>
+          <div class="sub">Here’s what’s growing at Green Valley Farm today.</div>
+        </div>
+        <a class="btn" href="#">＋&nbsp; Create listing</a>
+      </div>
+
+      <!-------- Stats --------->
+      <div class="stats">
+        <div class="card stat">
+          <div class="l">Sales this month</div>
+          <div class="v">J$84,250</div>
+          <div class="s">+18.4% from September</div>
+        </div>
+        <div class="card stat">
+          <div class="l">Active listings</div>
+          <div class="v">8</div>
+          <div class="s">2 crops running low</div>
+        </div>
+        <div class="card stat">
+          <div class="l">Orders to fulfil</div>
+          <div class="v">6</div>
+          <div class="s">2 awaiting your confirmation</div>
+        </div>
+        <div class="card stat">
+          <div class="l">Farm rating</div>
+          <div class="v">4.9 / 5</div>
+          <div class="s">From 28 happy buyers</div>
+        </div>
+      </div>
+
+      <!-- Alert -->
+      <div class="alert">
+        <span class="c"></span>
+        2 new orders need confirmation. Respond within 24 hours to keep buyers informed.
+        <a href="#">Review orders →</a>
+      </div>
+
+      <!-- Recent orders -->
+      <div class="card sec orders">
+        <div class="sh">
+          <h2>Recent orders</h2>
+          <a href="#">View all orders →</a>
+        </div>
+        <table>
+          <tr>
+            <th>Order / Buyer</th>
+            <th>Items</th>
+            <th>Order total</th>
+            <th>Delivery</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+          <tr>
+            <td><b>AC-1048 · Daniel Brown</b></td>
+            <td>Yellow yam 10 lb<br><div style="height:5px"></div>Tomatoes 5 lb</td>
+            <td>J$5,050</td>
+            <td>8 Oct · Kingston</td>
+            <td>Needs confirmation</td>
+            <td class="act"><a href="#">Confirm →</a></td>
+          </tr>
+          <tr>
+            <td><b>AC-1047 · Alicia Reid</b></td>
+            <td>Yellow yam 20 lb</td>
+            <td>J$5,000</td>
+            <td>7 Oct · Farm pickup</td>
+            <td>Ready for pickup</td>
+            <td class="act"><a href="#">View order →</a></td>
+          </tr>
+          <tr>
+            <td><b>AC-1042 · Devon Clarke</b></td>
+            <td>Tomatoes 10 lb</td>
+            <td>J$4,300</td>
+            <td>5 Oct · Kingston</td>
+            <td>Delivered</td>
+            <td class="act"><a href="#">View order →</a></td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- Listings and chart -->
+      <div class="bottom">
+
+        <div class="card sec">
+          <div class="sh"><h2>Your listings</h2></div>
+
+          <div class="li">
+
+            <!-- Listing Items-->
+            <img class="th" src="https://tse1.mm.bing.net/th/id/OIP.izwJQSkN9bCe8gyXt-OToQAAAA?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Yellow yam">
+            <div>
+              <div class="n">Yellow yam</div>
+              <div class="d">J$250 / lb · 120 lb available</div>
+            </div>
+            <span class="pill">Active</span>
+            <a class="edit" href="#">Edit</a>
+            </div>
+
+          <div class="li">
+            
+            <img class="th" src="https://www.photos-public-domain.com/wp-content/uploads/2018/04/vine-ripened-tomatoes-600x400.jpg" alt="Vine-ripened tomatoes">
+            <div>
+              <div class="n">Vine-ripened tomatoes</div>
+              <div class="d">J$350 / lb · 80 lb available</div>
+            </div>
+            <span class="pill">Active</span>
+            <a class="edit" href="#">Edit</a>
+          </div>
+
+          <div class="li">
+           
+            <img class="th" src="https://growhotpeppers.com/wp-content/uploads/2022/12/scotch-bonnet-peppers.jpeg" alt="Scotch bonnet peppers">
+            <div>
+              <div class="n">Scotch bonnet peppers</div>
+              <div class="d">J$850 / lb · 8 lb available</div>
+            </div>
+            <span class="pill">Low stock</span>
+          </div>
+
+          <a class="link" href="#">Manage all 8 listings →</a>
+        </div>
+
+        <div class="card chart">
+          <div class="sh"><h2>Sales this week</h2></div>
+          <div class="m">J$24,750 · 28 Sep – 4 Oct</div>
+
+          <div class="bars">
+            <div style="height:36%"></div>
+            <div style="height:56%"></div>
+            <div style="height:42%"></div>
+            <div style="height:72%"></div>
+            <div style="height:60%"></div>
+            <div style="height:100%;background:var(--dark)"></div>
+            <div style="height:78%"></div>
+          </div>
+
+          <div class="days">
+            <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+          </div>
+
+          <div class="f">↑ 12% compared with last week</div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!------- FOOTER ------->
+    <footer>
+    <div style="color: #DEBE95;">© 2026 Agri Connect · Grown in Jamaica. Connected by trust.</div>
+    <div>
+      <a style="color: #DEBE95;" href="help-centre.html">Help centre</a>
+      <a style="color: #DEBE95;" href="terms.html">Terms</a>
+      <a style="color: #DEBE95;" href="privacy.html">Privacy</a>
+      <span style="color: #DEBE95;">JMD J$</span>
+    </div>
+  </footer>
+
+</body>
+</html>
+
+</body>
+
+</html>
