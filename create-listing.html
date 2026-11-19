@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/create-listing.css">
+    <title>Create Listing | Agri Connect</title>
+</head>
+<body class="farmer-workspace fw-checking">
+
+    <!-- SIDEBAR -->
+    <aside class="fw-sidebar">
+        <p class="fw-sidebar-title">FARMER WORKSPACE</p>
+
+        <a href="index.html" class="fw-back">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9"></path><path d="M3 9h18v2a3 3 0 0 1-6 0 3 3 0 0 1-6 0 3 3 0 0 1-6 0z"></path><path d="M5 13v8h14v-8"></path><path d="M10 21v-5h4v5"></path></svg>
+            Back to marketplace
+        </a>
+
+        <nav class="fw-nav">
+            <a href="overview.html">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+                Overview
+            </a>
+            <a href="my-listings.html" class="active">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"></rect><path d="M9 4V3h6v1"></path><path d="M9 13l2 2 4-4"></path></svg>
+                My listings
+            </a>
+            <a href="orders.html">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><path d="M3.3 7L12 12l8.7-5"></path><path d="M12 22V12"></path></svg>
+                Orders
+            </a>
+            <a href="payouts.html">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"></rect><path d="M3 9h18"></path><path d="M9 13a3 3 0 0 0 6 0"></path></svg>
+                Payouts
+            </a>
+            <a href="farm-profile.html">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7H5a2 2 0 0 1 0-4h13v4"></path><path d="M3 5v14a2 2 0 0 0 2 2h15V7"></path><path d="M16 14h.01"></path></svg>
+                Farm profile
+            </a>
+            <a href="settings.html">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                Settings
+            </a>
+        </nav>
+
+
+        <!-- Filled in from the database (see js/create-listing.js) -->
+        <div class="fw-verified" id="farmer-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M8.5 12l2.5 2.5 4.5-5"></path></svg>
+            <p class="fw-verified-title" id="farmer-status">Loading farmer…</p>
+            <p><span id="farmer-name">&nbsp;</span><br><span id="farmer-location">&nbsp;</span></p>
+        </div>
+
+        <a href="#" id="sign-out" class="fw-signout">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><path d="M16 17l5-5-5-5"></path><path d="M21 12H9"></path></svg>
+            Sign out
+        </a>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="fw-main">
+
+        <!-- PAGE HEADING -->
+        <div class="fw-heading">
+            <div>
+                <nav class="fw-breadcrumb" aria-label="Breadcrumb">
+                    <a href="overview.html">FARMER HUB</a> /
+                    <a href="my-listings.html">MY LISTINGS</a> /
+                    <span aria-current="page">CREATE LISTING</span>
+                </nav>
+                <h1>Bring your harvest to market.</h1>
+                <p class="fw-subtitle">Create a clear, honest listing. Great details help buyers choose with confidence.</p>
+            </div>
+            <a href="profile.html" class="fw-profile" title="View your profile">
+                <span class="fw-avatar" id="profile-initials">–</span>
+                <span id="profile-name">My profile</span>
+            </a>
+        </div>
+
+        <!-- Shown only to farmers who are not RADA verified yet -->
+        <div id="verify-banner" class="fw-banner" role="status" hidden>
+            <strong>Your farm isn't verified yet.</strong>
+            You can fill in and save a draft, but you can publish once your RADA verification is approved.
+        </div>
+
+        <form id="listing-form" class="fw-grid" novalidate>
+
+            <!-- LEFT COLUMN: FORM SECTIONS -->
+            <div class="fw-column">
+
+                <!-- 1. THE ESSENTIALS (shared by both categories) -->
+                <section class="fw-card">
+                    <h2>1. The essentials</h2>
+                    <p class="fw-hint">Fields marked * are required.</p>
+
+                    <div class="fw-toggle">
+                        <input type="radio" name="Category" id="cat-crops" value="Crops" checked>
+                        <label for="cat-crops">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21v-9"></path><path d="M12 12c0-4 3-6 7-6 0 4-3 6-7 6z"></path><path d="M12 15c0-3-2-5-6-5 0 3 2 5 6 5z"></path><path d="M8 21h8"></path></svg>
+                            <span class="fw-check">✓</span> Crops
+                        </label>
+
+                        <input type="radio" name="Category" id="cat-livestock" value="Livestock">
+                        <label for="cat-livestock">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="6" r="2"></circle><circle cx="13" cy="4.5" r="2"></circle><circle cx="18" cy="8" r="2"></circle><path d="M8 20c-2 0-3-1.5-2.5-3.5C6.3 13.7 8.5 12 11 12s4.7 1.7 5.5 4.5C17 18.5 16 20 14 20c-1.2 0-2-.6-3-.6s-1.8.6-3 .6z"></path></svg>
+                            <span class="fw-check">✓</span> Livestock
+                        </label>
+                    </div>
+
+                    <div class="fw-field">
+                        <label for="title">Listing title *</label>
+                        <input type="text" id="title" name="Name" placeholder="e.g. Yellow yam" required>
+                    </div>
+
+                    <div class="fw-field">
+                        <label for="description">Description *</label>
+                        <textarea id="description" name="Description" rows="3" placeholder="e.g. Freshly dug yellow yam from our Manchester farm. Firm, golden flesh and hand-sorted for quality. Sold by the pound, with delivery or farm pickup available." required></textarea>
+                    </div>
+
+                    <div class="fw-row fw-row-3">
+                        <div class="fw-field">
+                            <label for="price">Price (JMD) *</label>
+                            <div class="fw-affix">
+                                <span>J$</span>
+                                <input type="number" id="price" name="Price" placeholder="250" min="1" step="any" required>
+                            </div>
+                        </div>
+                        <div class="fw-field">
+                            <label for="unit">Selling unit *</label>
+                            <!-- Options are filled in by js/create-listing.js for the chosen category -->
+                            <select id="unit" name="Unit" required>
+                                <option value="" disabled selected>Choose a unit</option>
+                                <option value="lb">Pound (lb)</option>
+                                <option value="kg">Kilogram (kg)</option>
+                                <option value="dozen">Dozen</option>
+                                <option value="bunch">Bunch</option>
+                                <option value="crate">Crate</option>
+                            </select>
+                        </div>
+                        <div class="fw-field">
+                            <label for="quantity">Available quantity *</label>
+                            <input type="number" id="quantity" name="Quantity" placeholder="120" min="1" required>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 2A. CROP DETAILS (shown when Crops is selected) -->
+                <fieldset class="fw-card" data-category="Crops">
+                    <h2>2. Crop details</h2>
+
+                    <div class="fw-row">
+                        <div class="fw-field">
+                            <label for="variety">Variety *</label>
+                            <input type="text" id="variety" name="Variety" placeholder="e.g. Yellow yam" required>
+                        </div>
+                        <div class="fw-field">
+                            <label for="harvest-date">Harvest date *</label>
+                            <input type="date" id="harvest-date" name="Harvest_date" required>
+                        </div>
+                    </div>
+
+                    <div class="fw-row">
+                        <div class="fw-field">
+                            <label for="method">Growing method</label>
+                            <select id="method" name="Growing_method">
+                                <option value="" selected>Choose a method</option>
+                                <option>Conventional</option>
+                                <option>Organic</option>
+                                <option>Greenhouse</option>
+                                <option>Hydroponic</option>
+                            </select>
+                        </div>
+                        <div class="fw-field">
+                            <label for="min-order">Minimum order</label>
+                            <input type="number" id="min-order" name="Min_order" placeholder="e.g. 5" min="1">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- 2B. LIVESTOCK DETAILS (shown when Livestock is selected) -->
+                <fieldset class="fw-card" data-category="Livestock" hidden disabled>
+                    <h2>2. Livestock details</h2>
+
+                    <div class="fw-row">
+                        <div class="fw-field">
+                            <label for="species">Species &amp; breed *</label>
+                            <input type="text" id="species" name="Species_breed" placeholder="e.g. Goat · Boer" required>
+                        </div>
+                        <div class="fw-field">
+                            <label for="sex">Sex *</label>
+                            <select id="sex" name="Sex" required>
+                                <option value="" disabled selected>Choose sex</option>
+                                <option>Male</option>
+                                <option>Female</option>
+                                <option>Mixed (group)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="fw-row">
+                        <div class="fw-field">
+                            <label for="age">Age *</label>
+                            <input type="text" id="age" name="Age" placeholder="e.g. 8 months" required>
+                        </div>
+                        <div class="fw-field">
+                            <label for="weight">Live weight (kg) *</label>
+                            <input type="number" id="weight" name="Live_weight" placeholder="e.g. 30" min="0.1" step="any" required>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- 3. COLLECTION & DELIVERY (shared) -->
+                <section class="fw-card">
+                    <h2>3. Collection &amp; delivery</h2>
+
+                    <div class="fw-row">
+                        <div class="fw-field">
+                            <label for="parish">Parish *</label>
+                            <select id="parish" name="Parish" required>
+                                <option value="" disabled selected>Choose a parish</option>
+                                <option>Clarendon</option>
+                                <option>Hanover</option>
+                                <option>Kingston</option>
+                                <option>Manchester</option>
+                                <option>Portland</option>
+                                <option>St. Andrew</option>
+                                <option>St. Ann</option>
+                                <option>St. Catherine</option>
+                                <option>St. Elizabeth</option>
+                                <option>St. James</option>
+                                <option>St. Mary</option>
+                                <option>St. Thomas</option>
+                                <option>Trelawny</option>
+                                <option>Westmoreland</option>
+                            </select>
+                        </div>
+                        <div class="fw-field">
+                            <label for="pickup">Pickup location *</label>
+                            <input type="text" id="pickup" name="Pickup_location" placeholder="e.g. Green Valley Farm, New Forest" required>
+                        </div>
+                    </div>
+
+                    <fieldset class="fw-delivery-choice" id="delivery-choice">
+                        <legend>Delivery *</legend>
+                        <div class="fw-checks">
+                            <label><input type="radio" name="Delivery" value="Yes" required> Delivery available</label>
+                            <label><input type="radio" name="Delivery" value="No"> Delivery not available</label>
+                        </div>
+                    </fieldset>
+                    <p class="fw-hint fw-hint-bottom">Buyers can always collect from your pickup location (free). Exact farm directions are shared after an order is confirmed.</p>
+                </section>
+
+                <!-- 4. PHOTOS -->
+                <section class="fw-card">
+                    <h2>4. Photos</h2>
+
+                    <div class="fw-photos">
+                        <div id="photo-thumbs" class="fw-thumbs"></div>
+
+                        <label for="photo-upload" class="fw-upload">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3"></path><path d="M7 8l5-5 5 5"></path><path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"></path></svg>
+                            <strong>Add photos</strong>
+                            <span>JPG or PNG · Up to 5 photos · 10 MB each</span>
+                        </label>
+                        <input type="file" id="photo-upload" name="Image" accept="image/jpeg, image/png" multiple hidden>
+                    </div>
+                    <p id="photo-error" class="fw-error" hidden></p>
+                </section>
+            </div>
+
+            <!-- RIGHT COLUMN: PREVIEW & EXTRA DETAILS -->
+            <div class="fw-column">
+
+                <!-- LISTING PREVIEW (updates as you type) -->
+                <section class="fw-card fw-preview">
+                    <h2>Listing preview</h2>
+                    <img id="preview-img" src="img/yam-crate.jpg" alt="Listing photo preview">
+                    <span id="preview-tag" class="fw-pill fw-pill-green">Crops · Freshly harvested</span>
+                    <h3 id="preview-title">Yellow yam</h3>
+                    <p id="preview-farm" class="fw-preview-farm">Your farm · Parish</p>
+                    <p id="preview-price" class="fw-preview-price">J$250 / lb</p>
+                </section>
+
+                <!-- QUALITY & STORAGE (Crops) -->
+                <fieldset class="fw-card fw-extra" data-category="Crops">
+                    <h2 class="fw-extra-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21v-9"></path><path d="M12 12c0-4 3-6 7-6 0 4-3 6-7 6z"></path><path d="M12 15c0-3-2-5-6-5 0 3 2 5 6 5z"></path><path d="M8 21h8"></path></svg>
+                        Quality &amp; storage
+                    </h2>
+                    <span class="fw-pill fw-pill-gold">Crop listings</span>
+                    <p class="fw-hint">Help buyers know what to expect when the produce arrives.</p>
+
+                    <div class="fw-field">
+                        <label for="grade">Size / grade *</label>
+                        <select id="grade" name="Grade" required>
+                            <option value="" disabled selected>Choose a grade</option>
+                            <option>Grade A · Large, unblemished</option>
+                            <option>Grade B · Medium, minor marks</option>
+                            <option>Mixed sizes</option>
+                            <option>Processing grade</option>
+                        </select>
+                    </div>
+
+                    <div class="fw-field">
+                        <label for="sprays">Chemical &amp; spray use *</label>
+                        <textarea id="sprays" name="Spray_use" rows="2" placeholder="e.g. No synthetic herbicides · Last spray 14 Sep 2026" required></textarea>
+                    </div>
+
+                    <div class="fw-field">
+                        <label for="storage">Storage &amp; shelf life *</label>
+                        <textarea id="storage" name="Storage" rows="2" placeholder="e.g. Cool, dry place · Keeps 2–3 weeks" required></textarea>
+                    </div>
+
+                    <div class="fw-field">
+                        <label for="packaging">Packaging</label>
+                        <input type="text" id="packaging" name="Packaging" placeholder="e.g. 25 lb crocus bags">
+                    </div>
+
+                    <label for="crop-doc" class="fw-file">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><path d="M14 3v6h6"></path><path d="M12 18v-6"></path><path d="M9 15l3-3 3 3"></path></svg>
+                        <span class="fw-file-name">Upload RADA or quality certificate (optional)</span>
+                    </label>
+                    <input type="file" id="crop-doc" name="Crop_document" accept=".pdf, image/jpeg, image/png" hidden>
+                </fieldset>
+
+                <!-- HEALTH & TRANSPORT (Livestock) -->
+                <fieldset class="fw-card fw-extra" data-category="Livestock" hidden disabled>
+                    <h2 class="fw-extra-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="6" r="2"></circle><circle cx="13" cy="4.5" r="2"></circle><circle cx="18" cy="8" r="2"></circle><path d="M8 20c-2 0-3-1.5-2.5-3.5C6.3 13.7 8.5 12 11 12s4.7 1.7 5.5 4.5C17 18.5 16 20 14 20c-1.2 0-2-.6-3-.6s-1.8.6-3 .6z"></path></svg>
+                        Health &amp; transport
+                    </h2>
+                    <span class="fw-pill fw-pill-gold">Livestock listings</span>
+                    <p class="fw-hint">Buyers need proof of health and a plan to move the animal safely.</p>
+
+                    <div class="fw-field">
+                        <label for="animal-id">Animal ID / tag</label>
+                        <input type="text" id="animal-id" name="Animal_id" placeholder="e.g. CH-028">
+                    </div>
+
+                    <div class="fw-field">
+                        <label for="health">Health &amp; vaccinations *</label>
+                        <textarea id="health" name="Health" rows="2" placeholder="e.g. Healthy · Dewormed 20 Sep 2026 · Vaccinated" required></textarea>
+                    </div>
+
+                    <label for="vet-doc" class="fw-file">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><path d="M14 3v6h6"></path><path d="M12 18v-6"></path><path d="M9 15l3-3 3 3"></path></svg>
+                        <span class="fw-file-name">Upload vet health record (optional)</span>
+                    </label>
+                    <input type="file" id="vet-doc" name="Vet_record" accept=".pdf, image/jpeg, image/png" hidden>
+
+                    <div class="fw-field">
+                        <label for="transport">Transport arrangements *</label>
+                        <textarea id="transport" name="Transport" rows="2" placeholder="e.g. Farm pickup in Clarendon · Suitable livestock vehicle required" required></textarea>
+                    </div>
+                </fieldset>
+
+                <!-- BEFORE YOU PUBLISH -->
+                <section class="fw-card fw-checklist">
+                    <h2>Before you publish</h2>
+                    <ul>
+                        <li>Use recent, clear photos</li>
+                        <li>Check quantity and selling unit</li>
+                        <li>Describe quality accurately</li>
+                        <li>Keep stock levels up to date</li>
+                    </ul>
+                </section>
+            </div>
+
+            <!-- BOTTOM ACTION BAR -->
+            <div class="fw-actions">
+                <p id="form-status">Fill in every field marked * to publish.</p>
+                <div class="fw-buttons">
+                    <button type="button" class="fw-btn-draft">Save draft</button>
+                    <button type="submit" class="fw-btn-publish">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+                        Publish listing
+                    </button>
+                </div>
+            </div>
+        </form>
+    </main>
+
+    <!-- "SUBMITTED FOR REVIEW" MESSAGE (shown after Publish listing) -->
+    <div id="submit-modal" class="fw-modal" role="dialog" aria-modal="true" aria-labelledby="submit-title" hidden>
+        <div class="fw-modal-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M8.5 12l2.5 2.5 4.5-5"></path></svg>
+            <h2 id="submit-title">Listing submitted for review</h2>
+            <p>Thanks! Our team will check your listing and publish it soon.</p>
+            <p class="fw-modal-note">Taking you to your overview…</p>
+        </div>
+    </div>
+
+    <script src="js/create-listing.js"></script>
+</body>
+</html>

@@ -21,7 +21,7 @@
     .site-header { background: #3f5a30; }
 
     /*Footer*/
-    .site-footer { background:#6f7a27; padding: 20px 48px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; font-size: 14;}
+    .site-footer { background:#6f7a27; padding: 20px 48px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; font-size: 14px;}
     .site-footer a { color: inherit; text-decoration: none; }
     .site-footer a:hover { text-decoration: underline; }
     .site-footer nav { display: flex; gap: 24px; color:#DEBE95;}
@@ -96,7 +96,7 @@
     border-radius: 4px;
     font-family: inherit;
     font-size: 14px;
-    font-weight: 600px;
+    font-weight: 600;
     cursor: pointer;
     }
     
@@ -117,11 +117,12 @@
         .hero { min-height: 220px; }
      }
      </style>
+    <link rel="stylesheet" href="css/auth-pages.css">
      </head>
      <body>
         
         <header class="site-header">
-        <a href="#" class="logo">
+        <a href="index.html" class="logo">
             <img src="Agriconnectlogo1.png" alt="Agri Connect">
         </a>
     </header>
@@ -138,7 +139,7 @@
 
     <section class="panel">
         <div class="card">
-            <a href="#" class="card-back"> ← Back to Marketplace</a>
+            <a href="index.html" class="card-back"> ← Back to Marketplace</a>
                 <div class="card-logo">
                     <img src="agriconnectlogo2.png" alt="Agri Connect" width="200" height="72">
         </div>
@@ -157,19 +158,22 @@
 
             <div class="field field-password">
                 <label for="password">Password</label>
-                <input id="password" type="password" autocomplete="current-password" placeholder="Enter your password" required>
+                <input id="password" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required>
+                <button type="button" id="toggle-password" class="toggle-password" aria-label="Show password"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"></path><circle cx="12" cy="12" r="3"></circle></svg></button>
             </div>
+            <p id="password-error" class="auth-field-error" hidden>Password must include at least 1 number and 1 special character (e.g. ! @ # $).</p>
 
             <div class="form-options">
-                <label><input type="checkbox" class="checkbox"> Keep me signed in</label>
-                <a href="#" class="forgot-password">Forgot Password?</a>
+                <label><input type="checkbox" class="checkbox" name="Remember"> Keep me signed in</label>
+                <a href="forgot-password.html" class="forgot-password">Forgot Password?</a>
             </div>
+            <p id="login-error" class="auth-form-error" role="alert" hidden></p>
             <button type="submit" class="btn btn-primary">Sign In</button>
             <p class="divider">or</p>
-            <button type="button" class="btn btn-secondary">Continue with Google</button>
+            <button type="button" id="google-signin" class="btn btn-secondary">Continue with Google</button>
         </form>
 
-        <p class="card-signup">New to Agri Connect?<a href="Create Account - Agri Connect.html">Create an account</a></p>
+        <p class="card-signup">New to Agri Connect?<a href="Agri Connect - Create Account.html">Create an account</a></p>
         <p class="card-legal">© 2026 Agri Connect · <a href="Agri Connect - Terms of Use.html">Terms of Use</a> · <a href="Agri Connect - Privacy Policy.html">Privacy Policy</a></p>
 
         </div>
@@ -186,5 +190,9 @@
             <a href="#">JMD J$</a>
         </nav>
      </footer>
+
+    <!-- Google sign-in library, then this page's script -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="js/signin.js"></script>
 </body>
 </html>

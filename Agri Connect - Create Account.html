@@ -181,13 +181,14 @@
         
         }
     </style>
+    <link rel="stylesheet" href="css/auth-pages.css">
 
 </head>
 <body>
 
 <header class="site-header">
-    <a href="#" class="logo">
-        <img src="Agriconnectlogo2.png" alt="Agri Connect Logo">
+    <a href="index.html" class="logo">
+        <img src="agriconnectlogo2.png" alt="Agri Connect Logo">
     </a>
 </header>
 
@@ -203,7 +204,7 @@
 
     <section class="panel">
         <div class="card">
-            <a href="#" class="card-back"> ← Back to Marketplace</a>
+            <a href="index.html" class="card-back"> ← Back to Marketplace</a>
 
             <p class="card-eyebrow" style="color: #6D7744;"><strong> Join Our Growing Community</strong></p>
             <h2 class="card-title">Make Yourself at Home.</h2>
@@ -245,7 +246,7 @@
                     <input type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com" required>
                 </div>
 
-                    <div class="from-row">
+                    <div class="form-row">
                         <div class="field">
                         <label for="phone">Phone Number</label>
                         <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="(876) 555-5555" required>
@@ -277,21 +278,33 @@
                         <label for="password">Password</label>
                         <input type="password" id="password" name="password" autocomplete="new-password" placeholder="••••••••" required>
 
-                        <p class="field-hint">Your password must be at least 8 characters long and include a mix of letters and numbers.</p>
+                        <p class="field-hint" id="password-hint">At least 8 characters, including 1 number and 1 special character (e.g. ! @ # $).</p>
                     </div>
 
+                    <!-- Only shown when "Farmer" is picked -->
+                    <div class="form-row" id="farmer-fields">
+                        <div class="field">
+                            <label for="farm-name">Farm Name</label>
+                            <input type="text" id="farm-name" name="farm-name" placeholder="Green Valley Farm" required>
+                        </div>
+                        <div class="field">
+                            <label for="rada-number">RADA Registration Number</label>
+                            <input type="text" id="rada-number" name="rada-number" placeholder="RADA-0001" required>
+                        </div>
+                    </div>
                     <div class="notice">
                         <span class="notice-icon" aria-hidden="true"></span>
                         <p class="notice-text">Farmers Complete a Quick Identity and Farm Verification Before Publishing Their First Listing.</p>
                     </div>
                     <label class="terms">
-                        <input type="checkbox" style="background-color: #203F32;" required>
-                        <span>I agree to the <a href="Terms of Use- Agri Connect.html">Terms of use</a> and <a href="Privacy Policy - Agri Connect.html">Privacy policy</a>.</span>
+                        <input type="checkbox" id="terms" name="terms" style="background-color: #203F32;" required>
+                        <span>I agree to the <a href="Agri Connect - Terms of Use.html" target="_blank">Terms of use</a> and <a href="Agri Connect - Privacy Policy.html" target="_blank">Privacy policy</a>.</span>
                     </label>
                     
-                    <button type="submit" class="btn btn-primary" style="background-color: #203F32; color: #fcd7a9;"> → Create Farmer Account</button>
+                    <p id="signup-error" class="auth-form-error" role="alert" hidden></p>
+                    <button type="submit" id="signup-button" class="btn btn-primary" style="background-color: #203F32; color: #fcd7a9;"> → Create Farmer Account</button>
                 </form>
-                <p class="card-signin">Already have an account?<a href="Agri Connect Sign In.html"><strong style="text-decoration: underline; color: #203F32;">Sign In</strong></a></p>
+                <p class="card-signin">Already have an account?<a href="Agri Connect - Sign In.html"><strong style="text-decoration: underline; color: #203F32;">Sign In</strong></a></p>
                 <p class="card-legal">© 2026 Agri Connect · Supporting Jamaica's Farmers</p>
             </div>
         </section>
@@ -309,5 +322,6 @@
         </nav>
     </footer>
 
+    <script src="js/create-account.js"></script>
 </body>
 </html>

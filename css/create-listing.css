@@ -1,0 +1,975 @@
+/* =========================================
+   CREATE LISTING PAGE (Farmer workspace)
+   ========================================= */
+
+/* --- COLOUR PALETTE --- */
+:root {
+    --ink-black: #0D1F22;
+    --forest: #203E32;        /* Sidebar, dark buttons */
+    --forest-light: #314F43;  /* Active sidebar link */
+    --forest-mid: #294539;    /* Verified farmer box */
+    --olive: #6F732F;
+    --gold: #B8962E;          /* Draft label */
+    --bg-cream: #FFEBD2;      /* Page background */
+    --card-bg: #FCD7AA;       /* Cards and inputs */
+    --input-border: #F0C996;
+    --panel-light: #F2EBD9;   /* Livestock panel */
+    --mint: #E7F1E6;          /* Green pill */
+    --butter: #FAE4AB;        /* Gold pill */
+    --text-muted: #7A7466;
+}
+
+/* --- RESET --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body.farmer-workspace {
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-cream);
+    color: var(--ink-black);
+    display: flex;
+    min-height: 100vh;
+}
+
+svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+/* =========================================
+   SIDEBAR
+   ========================================= */
+.fw-sidebar {
+    width: 240px;
+    flex-shrink: 0;
+    background-color: var(--forest);
+    color: #FFFFFF;
+    padding: 30px 20px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
+
+.fw-sidebar-title {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: #D8E2DA;
+    margin-bottom: 40px;
+}
+
+.fw-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.fw-nav a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    color: #E4ECE6;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
+}
+
+.fw-nav a:hover {
+    background-color: var(--forest-mid);
+}
+
+.fw-nav a.active {
+    background-color: var(--forest-light);
+    font-weight: 600;
+    color: #FFFFFF;
+}
+
+.fw-verified {
+    margin-top: 40px;
+    background-color: var(--forest-mid);
+    border-radius: 8px;
+    padding: 16px 16px 18px;
+}
+
+.fw-verified svg {
+    width: 20px;
+    height: 20px;
+    margin-bottom: 14px;
+}
+
+.fw-verified-title {
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+}
+
+.fw-verified p:last-child {
+    font-size: 0.78rem;
+    line-height: 1.5;
+    color: #C9D6CD;
+}
+
+/* =========================================
+   MAIN AREA
+   ========================================= */
+.fw-main {
+    flex: 1;
+    padding: 30px 30px 40px;
+    min-width: 0;
+}
+
+.fw-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 25px;
+}
+
+.fw-breadcrumb {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #5C5A3A;
+    margin-bottom: 8px;
+}
+
+.fw-heading h1 {
+    font-family: 'Lora', Georgia, 'Times New Roman', serif;
+    font-weight: 500;
+    font-size: 2.4rem;
+    color: #1E3A2F;
+    margin-bottom: 10px;
+}
+
+.fw-subtitle {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+}
+
+.fw-draft {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--gold);
+    margin-top: 30px;
+}
+
+/* Two-column layout: form + preview */
+.fw-grid {
+    display: grid;
+    grid-template-columns: 1fr 312px;
+    gap: 22px;
+    align-items: start;
+}
+
+.fw-column {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+/* =========================================
+   CARDS & FORM FIELDS
+   ========================================= */
+.fw-card {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    padding: 24px 22px;
+}
+
+.fw-card h2 {
+    font-size: 1.12rem;
+    font-weight: 600;
+    color: var(--ink-black);
+    margin-bottom: 20px;
+}
+
+.fw-hint {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin: -6px 0 18px;
+}
+
+.fw-hint-bottom {
+    margin: 22px 0 0;
+}
+
+.fw-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+}
+
+.fw-field:last-child {
+    margin-bottom: 0;
+}
+
+.fw-field label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    margin-bottom: 9px;
+}
+
+.fw-field input,
+.fw-field select,
+.fw-field textarea {
+    width: 100%;
+    font-family: inherit;
+    font-size: 0.9rem;
+    color: var(--ink-black);
+    background-color: var(--card-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 6px;
+    padding: 12px 11px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.fw-field textarea {
+    resize: vertical;
+    line-height: 1.6;
+}
+
+.fw-field input:focus,
+.fw-field select:focus,
+.fw-field textarea:focus {
+    border-color: var(--olive);
+    box-shadow: 0 0 0 3px rgba(111, 115, 47, 0.15);
+}
+
+/* Custom dropdown arrow */
+.fw-field select {
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%230D1F22' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 34px;
+}
+
+/* Fields with "J$" in front or "lb" after */
+.fw-affix {
+    display: flex;
+    align-items: center;
+    background-color: var(--card-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 6px;
+    padding: 0 11px;
+}
+
+.fw-affix:focus-within {
+    border-color: var(--olive);
+    box-shadow: 0 0 0 3px rgba(111, 115, 47, 0.15);
+}
+
+.fw-affix span {
+    font-size: 0.9rem;
+}
+
+.fw-field .fw-affix input {
+    border: none;
+    box-shadow: none;
+    padding: 12px 2px;
+    background: transparent;
+}
+
+.fw-affix-end input {
+    width: 2.2ch !important;
+    margin-right: 4px;
+    flex: none;
+}
+
+/* Hide number arrows */
+.fw-field input[type="number"]::-webkit-inner-spin-button,
+.fw-field input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.fw-field input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+/* Rows of side-by-side fields */
+.fw-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.fw-row:last-child {
+    margin-bottom: 0;
+}
+
+.fw-row .fw-field {
+    margin-bottom: 0;
+}
+
+.fw-row-3 {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+}
+
+/* =========================================
+   CROPS / LIVESTOCK TOGGLE
+   ========================================= */
+.fw-toggle {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 26px;
+}
+
+.fw-toggle input {
+    display: none;
+}
+
+.fw-toggle label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 11px;
+    border: 1px solid var(--input-border);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.fw-toggle .fw-check {
+    display: none;
+}
+
+.fw-toggle input:checked + label {
+    background-color: var(--forest);
+    border-color: var(--forest);
+    color: #FFFFFF;
+}
+
+.fw-toggle input:checked + label .fw-check {
+    display: inline;
+}
+
+.fw-toggle input:not(:checked) + label:hover {
+    border-color: var(--olive);
+}
+
+/* =========================================
+   DELIVERY CHECKBOXES
+   ========================================= */
+.fw-checks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px;
+    margin-top: 18px;
+}
+
+.fw-checks label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.fw-checks input {
+    accent-color: var(--forest);
+    width: 14px;
+    height: 14px;
+}
+
+/* =========================================
+   PHOTOS
+   ========================================= */
+.fw-photos {
+    display: flex;
+    gap: 14px;
+}
+
+.fw-thumb {
+    width: 130px;
+    height: 96px;
+    object-fit: cover;
+    border-radius: 6px;
+    flex-shrink: 0;
+}
+
+.fw-upload {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid var(--input-border);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.fw-upload:hover {
+    border-color: var(--olive);
+    background-color: #FAD09C;
+}
+
+.fw-upload strong {
+    font-size: 0.82rem;
+}
+
+.fw-upload span {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+}
+
+/* =========================================
+   RIGHT COLUMN
+   ========================================= */
+
+/* Listing preview */
+.fw-preview img {
+    width: 100%;
+    height: 156px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 16px;
+}
+
+.fw-pill {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+
+.fw-pill-green {
+    background-color: var(--mint);
+    color: #1E3A2F;
+}
+
+.fw-pill-gold {
+    background-color: var(--butter);
+    color: #A27C22;
+    margin-bottom: 12px;
+}
+
+.fw-preview h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 18px 0 16px;
+}
+
+.fw-preview-farm {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-bottom: 18px;
+}
+
+.fw-preview-price {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+/* Livestock details panel */
+.fw-livestock {
+    background-color: var(--panel-light);
+    padding: 20px 18px;
+}
+
+.fw-livestock .fw-livestock-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    margin-bottom: 14px;
+}
+
+.fw-livestock .fw-hint {
+    margin: 0 0 16px;
+    line-height: 1.5;
+}
+
+.fw-livestock .fw-field input,
+.fw-livestock .fw-field select,
+.fw-livestock .fw-field textarea {
+    border-color: var(--card-bg);
+    cursor: default;
+}
+
+.fw-livestock .fw-field select {
+    opacity: 1;
+    color: var(--ink-black);
+}
+
+.fw-livestock .fw-row {
+    gap: 10px;
+}
+
+.fw-file {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--card-bg);
+    border-radius: 6px;
+    padding: 10px 12px;
+    margin-bottom: 18px;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+}
+
+/* Before you publish */
+.fw-checklist ul {
+    list-style: none;
+}
+
+.fw-checklist li {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+
+.fw-checklist li:last-child {
+    margin-bottom: 0;
+}
+
+.fw-checklist li::before {
+    content: "✓ ";
+}
+
+/* =========================================
+   BOTTOM ACTION BAR
+   ========================================= */
+.fw-actions {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #F0D9BC;
+    padding-top: 18px;
+    margin-top: 0;
+}
+
+.fw-actions p {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.fw-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.fw-buttons button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 12px 18px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.15s, background-color 0.2s;
+}
+
+.fw-buttons button:active {
+    transform: scale(0.96);
+}
+
+.fw-btn-draft {
+    background-color: var(--card-bg);
+    color: var(--ink-black);
+}
+
+.fw-btn-draft:hover {
+    background-color: #F7C98F;
+}
+
+.fw-btn-publish {
+    background-color: var(--forest);
+    color: #FFFFFF;
+}
+
+.fw-btn-publish:hover {
+    background-color: var(--forest-light);
+}
+
+/* =========================================
+   SMALLER SCREENS
+   ========================================= */
+@media (max-width: 1000px) {
+    .fw-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 760px) {
+    body.farmer-workspace {
+        flex-direction: column;
+    }
+    .fw-sidebar {
+        width: 100%;
+        height: auto;
+        position: static;
+    }
+    .fw-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .fw-verified {
+        display: none;
+    }
+    .fw-heading {
+        flex-direction: column;
+    }
+    .fw-draft {
+        margin-top: 0;
+    }
+    .fw-row,
+    .fw-row-3 {
+        grid-template-columns: 1fr;
+    }
+    .fw-actions {
+        flex-direction: column;
+        gap: 15px;
+        align-items: stretch;
+    }
+}
+
+/* =========================================
+   BREADCRUMB LINKS, PROFILE, SUBMIT MESSAGE
+   ========================================= */
+.fw-breadcrumb a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.fw-breadcrumb a:hover {
+    color: var(--forest);
+    text-decoration: underline;
+}
+
+.fw-breadcrumb span {
+    color: var(--text-muted);
+}
+
+/* Profile button (top right) */
+.fw-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 22px;
+    padding: 6px 14px 6px 6px;
+    border-radius: 30px;
+    background-color: var(--card-bg);
+    color: var(--ink-black);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+
+.fw-profile:hover {
+    background-color: #F7C98F;
+}
+
+.fw-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: var(--forest);
+    color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+/* Preview image fades when switching Crops / Livestock */
+.fw-preview img {
+    transition: opacity 0.2s;
+}
+
+/* "Submitted for review" message */
+.fw-modal {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(13, 31, 34, 0.45);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 100;
+}
+
+.fw-modal[hidden] {
+    display: none;
+}
+
+.fw-modal-box {
+    background-color: var(--bg-cream);
+    border-radius: 14px;
+    padding: 34px 36px;
+    max-width: 420px;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+    animation: fw-pop 0.25s ease-out;
+}
+
+.fw-modal-box svg {
+    width: 48px;
+    height: 48px;
+    color: var(--forest);
+    margin-bottom: 14px;
+}
+
+.fw-modal-box h2 {
+    font-family: 'Lora', Georgia, 'Times New Roman', serif;
+    font-weight: 500;
+    font-size: 1.6rem;
+    color: #1E3A2F;
+    margin-bottom: 10px;
+}
+
+.fw-modal-box p {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.fw-modal-note {
+    margin-top: 14px;
+    font-size: 0.8rem !important;
+}
+
+@keyframes fw-pop {
+    from { transform: scale(0.92); opacity: 0; }
+    to   { transform: scale(1);    opacity: 1; }
+}
+
+/* =========================================
+   CATEGORY SECTIONS, VALIDATION, PHOTOS
+   ========================================= */
+
+/* Category sections are <fieldset>s, so remove the browser's default box */
+fieldset.fw-card {
+    border: none;
+    min-width: 0;
+    margin: 0;
+}
+
+fieldset.fw-card[hidden] {
+    display: none;
+}
+
+/* Grey example text inside empty boxes */
+.fw-field input::placeholder,
+.fw-field textarea::placeholder {
+    color: #A39579;
+    opacity: 1;
+}
+
+.fw-field select:invalid {
+    color: #A39579;
+}
+
+.fw-field select option {
+    color: var(--ink-black);
+}
+
+/* Right-hand extra details panel (Quality & storage / Health & transport) */
+.fw-extra {
+    background-color: var(--panel-light);
+    padding: 20px 18px;
+}
+
+.fw-extra .fw-extra-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    margin-bottom: 14px;
+}
+
+.fw-extra .fw-hint {
+    margin: 0 0 16px;
+    line-height: 1.5;
+}
+
+.fw-extra .fw-field input,
+.fw-extra .fw-field select,
+.fw-extra .fw-field textarea {
+    border-color: var(--card-bg);
+}
+
+label.fw-file {
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+label.fw-file:hover {
+    background-color: #F7C98F;
+}
+
+/* Missing required fields */
+.fw-field .fw-invalid,
+.fw-affix:has(.fw-invalid) {
+    border-color: #C0392B !important;
+    background-color: #FBE3DA;
+}
+
+.fw-affix .fw-invalid {
+    background-color: transparent;
+}
+
+.fw-actions .fw-status-error {
+    color: #C0392B;
+    font-weight: 600;
+}
+
+.fw-error {
+    margin-top: 10px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #C0392B;
+}
+
+/* Uploaded photo thumbnails */
+.fw-thumbs {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.fw-thumbs:empty {
+    display: none;
+}
+
+.fw-upload {
+    min-height: 96px;
+}
+
+/* Sidebar box when the farmer is not verified yet */
+.fw-pending {
+    background-color: #5A4A23;
+}
+
+.fw-thumbs .fw-thumb {
+    width: 96px;
+    height: 96px;
+}
+
+/* =========================================
+   SIGN-IN CHECK, SIGN OUT, BANNER, BUSY STATE
+   ========================================= */
+
+/* Hide the page until we know who is signed in (avoids a flash before redirecting) */
+body.fw-checking .fw-main,
+body.fw-checking .fw-sidebar nav,
+body.fw-checking .fw-verified {
+    visibility: hidden;
+}
+
+.fw-signout {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 16px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    color: #C9D6CD;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.fw-signout:hover {
+    background-color: var(--forest-mid);
+    color: #FFFFFF;
+}
+
+.fw-banner {
+    background-color: #FAE4AB;
+    color: #5C4712;
+    border-left: 4px solid var(--gold);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 22px;
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+
+.fw-banner[hidden] {
+    display: none;
+}
+
+.fw-buttons button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.fw-actions .fw-status-ok {
+    color: #2E6B3A;
+    font-weight: 600;
+}
+
+/* Back to marketplace link at the top of the sidebar */
+.fw-back {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid rgba(243, 217, 138, 0.35);
+    color: #F3D98A;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+
+.fw-back:hover {
+    background-color: var(--forest-mid);
+}
+
+.fw-back svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+/* Delivery available / not available (required choice) */
+.fw-delivery-choice {
+    border: 0;
+    margin: 18px 0 0;
+    padding: 0;
+}
+
+.fw-delivery-choice legend {
+    font-size: 0.82rem;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.fw-delivery-choice .fw-checks {
+    margin-top: 8px;
+}
+
+.fw-delivery-choice.fw-invalid legend,
+.fw-delivery-choice.fw-invalid label {
+    color: #c0392b;
+}
